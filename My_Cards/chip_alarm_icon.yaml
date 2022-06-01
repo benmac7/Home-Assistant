@@ -1,0 +1,32 @@
+---
+chip_alarm_icon:
+  template: "chips"
+  show_icon: true
+  styles:
+    grid:
+      - grid-template-areas: "'i'"
+    icon:
+      - color: |
+          [[[
+            var alarm_color = "yellow";
+            if (entity.state == "armed_away"){
+              var alarm_color = "var(--google-red)";
+            } else if(entity.state == "disarmed"){
+              var alarm_color = "var(--google-green)";
+            } else if(entity.state == "armed_home"){
+              var alarm_color = "var(--google-green)";
+            }
+            return alarm_color;
+          ]]]
+  icon: |
+    [[[
+      var alarm_icon = "mdi:shield-outline";
+      if (entity.state == "armed_away"){
+        var alarm_icon = "mdi:shield-lock";
+      } else if(entity.state == "disarmed"){
+        var alarm_icon = "mdi:shield-off";
+      } else if(entity.state == "armed_home"){
+        var alarm_icon = "mdi:shield-home";
+      }
+      return alarm_icon;
+    ]]]

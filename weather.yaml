@@ -1,0 +1,87 @@
+  - title: "Weather"
+    icon: mdi:home-lightning-bolt-outline
+    path: weather
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-image: linear-gradient(0deg, rgba(39,123,161,1) 0%, rgba(157,136,173,1) 100%);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-grey-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/home
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-grey-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.power_kw
+                          ulm_chip_mdi_icon_state_icon: mdi:lightning-bolt
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb_nu
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.electricity_cost_today
+                          ulm_chip_mdi_icon_state_icon: mdi:currency-usd
+          - type: "custom:button-card"
+            entity: "sensor.dark_sky_summary"
+            template:
+              - "card_title_icon"
+            name: "Weather"
+            variables:
+              ulm_card_navigate_title: Weather
+#              ulm_card_navigate_icon: mdi:home-lightning-bolt-outline
+              icon_color: grey
+              background_color: grey-bg

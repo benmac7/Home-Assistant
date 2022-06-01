@@ -1,0 +1,17 @@
+---
+### Orange ###
+orange_off:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-orange),1)"
+        label:
+          - color: "rgba(var(--color-orange-text),1)"
+        name:
+          - color: "rgba(var(--color-orange-text),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-orange), 0.2)"
+        card:
+          - background-color: "rgba(var(--color-background-orange),var(--opacity-bg))"
+      id: "off"
+      value: "off"

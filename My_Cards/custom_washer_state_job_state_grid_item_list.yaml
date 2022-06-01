@@ -1,0 +1,185 @@
+---
+custom_washer_state_job_state_grid_item_list:
+    styles:
+      card:
+        - box-shadow: none
+        - padding: 0px
+        - border-radius: 'var(--border-radius-bar)'
+        - pointer-events: none
+        - background-color: 'rgba(var(--color-theme), 0.05)'
+        - justify-items: center
+      grid:
+        - grid-template-areas: '"item2 item3 item4 item5"'
+        - grid-template-columns: 1fr 1fr 1fr 1fr
+        - grid-template-rows: min-content
+        - column-gap: 9px
+        - justify-items: center
+      img_cell:
+        - justify-items: center
+custom_washer_state_grid_job_state_item_list_items:
+    show_icon: true
+    show_name: false
+    size: 20px
+    tap_action:
+      action: none
+    styles:
+      card:
+        - box-shadow: none
+        - padding: 2px
+        - border-radius: 'var(--border-radius)'
+        - place-self: center
+        - height: 40px
+        - width: 80px
+        - pointer-events: auto
+        - background-color: transparent
+      grid:
+        - grid-template-areas: '"i"'
+      icon:
+        - color: var(--google-grey)
+custom_washer_state_grid_state_item_list:
+  styles:
+    card:
+      - box-shadow: none
+      - padding: 0px
+    grid:
+      - grid-template-areas: '"item1 item2"'
+      - grid-template-columns: 1fr 1fr
+      - grid-template-rows: min-content
+      - column-gap: 7px
+custom_washer_lg_smartthinq:
+  variables:
+    alert_entity: ""
+  styles:
+    card:
+      - border-radius: 'var(--border-radius)'
+      - box-shadow: 'var(--box-shadow)'
+      - padding: 12px
+      - background-color: >
+          [[[
+            if(hass.themes.darkMode)
+              if( states[variables.ulm_custom_washer_grid_machine_state].state === 'on' ){
+                return 'rgba(var(--color-blue),0.1)'
+              }
+          ]]]
+    grid:
+      - grid-template-areas: '"item1" "item2"'
+      - grid-template-columns: 1fr
+      - grid-template-rows: min-content  min-content
+      - row-gap: 12px
+  custom_fields:
+    item1:
+      card:
+        type: custom:button-card
+        template: custom_washer_state_grid_state_item_list
+        custom_fields:
+          item1:
+            card:
+              type: custom:button-card
+              template:
+                - "icon_info_custom_alert"
+              entity: '[[[ return variables.ulm_custom_washer_grid_machine_state ]]]'
+              variables:
+                alert_entity: '[[[ return variables.alert_entity ]]]'
+              icon: 'mdi:washing-machine'
+#              name: Washing Machine
+              tap_action:
+                action: more-info
+              label: '[[[ return states[variables.ulm_custom_washer_grid_job_state].state ]]]'
+              styles:
+                card:
+                  - background-color: 'rgba(0,0,0,0)'
+              state:
+                - value: 'on'
+                  label: 'Running'
+                  styles:
+                    icon:
+                      - color: 'rgba(var(--color-blue), 1)'
+                    img_cell:
+                      - background-color: 'rgba(var(--color-background-blue), 0.2)'
+          item2:
+            card:
+              type: conditional
+              conditions:
+                - entity: '[[[ return variables.ulm_custom_washer_grid_machine_state ]]]'
+                  state: 'on'
+              card:
+                type: custom:button-card
+                name: Remaining
+                template:
+                  - icon_info
+                entity: '[[[ return variables.ulm_custom_washer_grid_completion_timestamp ]]]'
+                icon: 'mdi:progress-clock'
+                tap_action:
+                  action: none
+                styles:
+                  card:
+                    - background-color: 'rgba(0,0,0,0)'
+                label: '[[[ return states[variables.ulm_custom_washer_grid_completion_timestamp].state ]]]'
+    item2:
+      card:
+        type: custom:button-card
+        template: custom_washer_state_job_state_grid_item_list
+        custom_fields:
+          item2:
+            card:
+              type: custom:button-card
+              icon: mdi:waves
+              template: custom_washer_state_grid_job_state_item_list_items
+              entity: '[[[ return variables.ulm_custom_washer_grid_job_state ]]]'
+              state:
+                - value: 'Washing'
+                  styles:
+                    icon:
+                      - transform: scale(1.2)
+                      - color: 'var(--google-blue)'
+                    card:
+                      - background-color: 'rgba(0,0,0,0)'
+                      - border-radius: 'var(--border-radius-bar)'
+
+          item3:
+            card:
+              type: custom:button-card
+              icon: mdi:water
+              template: custom_washer_state_grid_job_state_item_list_items
+              entity: '[[[ return variables.ulm_custom_washer_grid_job_state ]]]'
+              state:
+                - value: 'Rinsing'
+                  styles:
+                    icon:
+                      - transform: scale(1.2)
+                      - color: 'var(--google-green)'
+                    card:
+                      - background-color: 'rgba(0,0,0,0)'
+                      - border-radius: '14px'
+                      
+          item4:
+            card:
+              type: custom:button-card
+              icon: mdi:fan
+              template: custom_washer_state_grid_job_state_item_list_items
+              entity: '[[[ return variables.ulm_custom_washer_grid_job_state ]]]'
+              state:
+                - value: 'Spinning'
+                  styles:
+                    icon:
+                      - transform: scale(1.2)
+                      - color: 'var(--google-yellow)'
+                    card:
+                      - background-color: 'rgba(0,0,0,0)'
+                      - border-radius: '14px'
+
+          item5:
+            card:
+              type: custom:button-card
+              icon: mdi:tumble-dryer
+              template: custom_washer_state_grid_job_state_item_list_items
+              entity: '[[[ return variables.ulm_custom_washer_grid_job_state ]]]'
+              state:
+                - value: 'Drying'
+                  styles:
+                    icon:
+                      - transform: scale(1.2)
+                      - color: 'var(--google-red)'
+                    card:
+                      - background-color: 'rgba(0,0,0,0)'
+                      - border-radius: '14px'

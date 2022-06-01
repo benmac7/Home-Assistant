@@ -1,0 +1,607 @@
+---
+radial_icon_info:
+  variables:
+    entity_1: ""
+    entity_1_name: ""
+    entity_1_color: ""
+    entity_2: ""
+    entity_2_name: "" 
+    entity_2_color: ""
+    entity_3: ""
+    entity_3_name: "" 
+    entity_3_color: ""
+    rpi_temp: "sensor.rpi_cpu_temperature"
+  triggers_update: "all"
+  color: auto
+  variable: spin
+  spin: false
+  show_name: false
+  show_state: false
+  show_label: false
+  show_icon: false
+  show_last_changed: false
+  show_entity_picture: false
+  tap_action:
+    action: none
+  aspect_ratio: 2/1
+  styles:
+    grid:
+      - grid-template-areas: '"entity_1_card radial" "entity_2_card radial" "entity_3_card radial"'
+      - grid-template-columns: "35% 65%"
+      - grid-template-rows: "1fr 1fr 1fr"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "2px"
+    custom_fields:
+      notification:
+        - border-radius: "var(--border-radius)"
+        - position: "absolute"
+        - left: "82%"
+        - top: "6%"
+        - height: "30px"
+        - width: "60px"
+        - border: "none"
+        - font-size: "14px"
+        - font-weight: "bold"
+        - color: "var(--color-red)"
+        - line-height: "20px"
+        - background-color: "rgba(0,0,0,0)"
+  custom_fields:
+    notification: >
+        [[[
+          return `<ha-icon
+            icon="mdi:thermometer"
+            style="; --mdc-icon-size: 16px; padding-left: 6px; padding-right: 5px; color: rgb(var(--color-red));">
+            </ha-icon><span>$states[variables.rpi_temp].state°C</span>`
+        ]]]
+    radial:
+      card:
+        type: custom:apexcharts-card
+        chart_type: radialBar
+        style: |
+          ha-card {
+            border-radius: "var(--border-radius)";
+            box-shadow: none;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            padding-left: 0px;
+            background-color: rgba(0,0,0,0);
+          }
+        header: 
+          show: false
+        apex_config: 
+          title:
+            floating: false
+            align: top
+            style: 
+              fontSize: 2px
+              fontWeight: bold
+          chart: 
+            foreColor: rgb(148,148,148)
+            offsetY: 5
+          legend: 
+            show: false 
+        series:
+          - entity: "[[[ return variables.entity_1 ]]]"
+            name: "[[[ return variables.entity_1_name ]]]"
+            color: "rgb(211, 219, 250)"
+          - entity: "[[[ return variables.entity_2 ]]]"
+            name: "[[[ return variables.entity_2_name ]]]"
+            color: "rgb(246, 208, 220)"
+          - entity: "[[[ return variables.entity_3 ]]]"
+            name: "[[[ return variables.entity_3_name ]]]"
+            color: "rgb(218, 209, 249)"
+    entity_1_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_1_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_1 ]]]"
+        name: "[[[ return variables.entity_1_name ]]]"
+    entity_2_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_2_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_2 ]]]"
+        name: "[[[ return variables.entity_2_name ]]]"
+    entity_3_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_3_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_3 ]]]"
+        name: "[[[ return variables.entity_3_name ]]]"
+
+rpi_4_sensors:
+  variables:
+    entity_1: ""
+    entity_1_name: ""
+    entity_1_color: ""
+    entity_2: ""
+    entity_2_name: "" 
+    entity_2_color: ""
+    entity_3: ""
+    entity_3_name: "" 
+    entity_3_color: ""
+    entity_4: ""
+    entity_4_name: "" 
+    entity_4_color: ""
+  triggers_update: "all"
+  color: auto
+  variable: spin
+  spin: false
+  show_name: false
+  show_state: false
+  show_label: false
+  show_icon: false
+  show_last_changed: false
+  show_entity_picture: false
+  tap_action:
+    action: none
+  aspect_ratio: 1.7/1
+  styles:
+    grid:
+      - grid-template-areas: '"entity_1_card radial" "entity_2_card radial" "entity_3_card radial" "entity_4_card radial"'
+      - grid-template-columns: "28% 72%"
+      - grid-template-rows: "1fr 1fr 1fr 1fr"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "2px"
+  custom_fields:
+    radial:
+      card:
+        type: custom:apexcharts-card
+        chart_type: radialBar
+        style: |
+          ha-card {
+            border-radius: "var(--border-radius)";
+            box-shadow: none;
+            padding-bottom: 0px;
+            padding-top: 0px;
+            padding-left: 0px;
+            background-color: rgba(0,0,0,0);
+          }
+        header: 
+          show: false
+        apex_config: 
+          title:
+            floating: false
+            align: top
+            style: 
+              fontSize: 2px
+              fontWeight: bold
+          chart: 
+            foreColor: rgb(148,148,148)
+            offsetY: 5
+          legend: 
+            show: false 
+        series:
+          - entity: "[[[ return variables.entity_1 ]]]"
+            name: "[[[ return variables.entity_1_name ]]]"
+            color: "rgb(61, 90, 254)"
+          - entity: "[[[ return variables.entity_2 ]]]"
+            name: "[[[ return variables.entity_2_name ]]]"
+            color: "rgb(233, 30, 99)"
+          - entity: "[[[ return variables.entity_3 ]]]"
+            name: "[[[ return variables.entity_3_name ]]]"
+            color: "rgb(102, 31, 255)"
+          - entity: "[[[ return variables.entity_4 ]]]"
+            name: "[[[ return variables.entity_4_name ]]]"
+            color: "rgb(245, 68, 54)"
+    entity_1_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_1_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_1 ]]]"
+        name: "[[[ return variables.entity_1_name ]]]"
+    entity_2_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_2_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_2 ]]]"
+        name: "[[[ return variables.entity_2_name ]]]"
+    entity_3_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_3_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_3 ]]]"
+        name: "[[[ return variables.entity_3_name ]]]"
+    entity_4_card:
+      card:
+        type: "custom:button-card"
+        styles:
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+        template:
+          - "card_generic_swap"
+          - "[[[ return variables.entity_4_color + '_no_state' ]]]"
+        entity: "[[[ return variables.entity_4 ]]]"
+        name: "[[[ return variables.entity_4_name ]]]"
+
+custom_card_apexcharts:
+  variables:
+    entity_1:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red', 'green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+    entity_2:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon  ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red', 'green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+    entity_3:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon  ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red','green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+  color: "auto"
+  variable: "spin"
+  spin: false
+  show_name: false
+  show_state: false
+  show_label: false
+  show_icon: false
+  show_last_changed: false
+  show_entity_picture: false
+  tap_action:
+    action: "none"
+  aspect_ratio: "2/1"
+  styles:
+    grid:
+      - grid-template-areas: "'item1 radial' 'item2 radial' 'item3 radial'"
+      - grid-template-columns: "35% 65%"
+      - grid-template-rows: "1fr 1fr 1fr"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "0px"
+  custom_fields:
+    item1:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_1.entity_id ]]]"
+        icon: "[[[ return variables.entity_1.icon ]]]"
+        name: "[[[ return variables.entity_1.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_1.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_1.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    item2:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_2.entity_id ]]]"
+        icon: "[[[ return variables.entity_2.icon ]]]"
+        name: "[[[ return variables.entity_2.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_2.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_2.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    item3:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_3.entity_id ]]]"
+        icon: "[[[ return variables.entity_3.icon ]]]"
+        name: "[[[ return variables.entity_3.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_3.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_3.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    radial:
+      card:
+        type: "custom:apexcharts-card"
+        graph_span: "[[[ return variables.graph_span ]]]"
+        chart_type: "[[[ return variables.chart_type ]]]"
+        style: |
+          ha-card {
+            border-radius: "var(--border-radius)";
+            box-shadow: none;
+            padding-left: 10px;
+            padding-bottom: 0px;
+          }
+        header:
+          show: false
+        apex_config:
+          title:
+            floating: false
+            align: "top"
+            style:
+              fontSize: "2px"
+              fontWeight: "bold"
+          chart:
+            foreColor: "rgb(148,148,148)"
+            offsetY: 5
+          legend:
+            show: false
+        series:
+          - entity: "[[[ return variables.entity_1.entity_id ]]]"
+            name: "[[[ return variables.entity_1_name ]]]"
+            color: "[[[ return `rgb(var(--color-${variables.entity_1.color}))`;]]]"
+            max: "[[[ return variables.entity_1.max_value ]]]"
+            min: "[[[ return variables.entity_1.min_value ]]]"
+          - entity: "[[[ return variables.entity_2.entity_id ]]]"
+            name: "[[[ return variables.entity_2_name ]]]"
+            color: "[[[ return `rgb(var(--color-${variables.entity_2.color}))`;]]]"
+            max: "[[[ return variables.entity_2.max_value ]]]"
+            min: "[[[ return variables.entity_2.min_value ]]]"
+          - entity: "[[[ return variables.entity_3.entity_id ]]]"
+            name: "[[[ return variables.entity_3_name ]]]"
+            color: "[[[ return `rgb(var(--color-${variables.entity_3.color}))`;]]]"
+            max: "[[[ return variables.entity_3.max_value ]]]"
+            min: "[[[ return variables.entity_3.min_value ]]]"
+
+custom_card_apexcharts_large:
+  variables:
+    entity_1:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red', 'green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+    entity_2:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon  ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red', 'green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+    entity_3:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon  ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red','green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+    entity_4:
+      entity_id:
+      icon: "[[[ return entity.attributes.icon  ]]]"
+      name: "[[[ return entity.attributes.friendly_name ]]]"
+      color: >
+        [[[
+          var colors = ['yellow', 'blue', 'red','green', 'purple', 'pink'];
+          var color = colors[Math.floor(Math.random() * colors.length)];
+          return color;
+        ]]]
+  color: "auto"
+  variable: "spin"
+  spin: false
+  show_name: false
+  show_state: false
+  show_label: false
+  show_icon: false
+  show_last_changed: false
+  show_entity_picture: false
+  tap_action:
+    action: "none"
+  aspect_ratio: "1.75/1"
+  styles:
+    grid:
+      - grid-template-areas: "'item1 radial' 'item2 radial' 'item3 radial' 'item4 radial'"
+      - grid-template-columns: "32% 68%"
+      - grid-template-rows: "1fr 1fr 1fr 1fr"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "0px"
+  custom_fields:
+    item1:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_1.entity_id ]]]"
+        icon: "[[[ return variables.entity_1.icon ]]]"
+        name: "[[[ return variables.entity_1.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_1.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_1.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    item2:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_2.entity_id ]]]"
+        icon: "[[[ return variables.entity_2.icon ]]]"
+        name: "[[[ return variables.entity_2.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_2.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_2.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    item3:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_3.entity_id ]]]"
+        icon: "[[[ return variables.entity_3.icon ]]]"
+        name: "[[[ return variables.entity_3.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_3.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_3.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+    item4:
+      card:
+        type: "custom:button-card"
+        entity: "[[[ return variables.entity_4.entity_id ]]]"
+        icon: "[[[ return variables.entity_4.icon ]]]"
+        name: "[[[ return variables.entity_4.name ]]]"
+        template:
+          - "card_generic_swap"
+        styles:
+          icon:
+            - color: "[[[ return `rgba(var(--color-${variables.entity_4.color}), 1)`;]]]"
+          img_cell:
+            - background-color: "[[[ return `rgba(var(--color-${variables.entity_4.color}), 0.20)`;]]]"
+          card:
+            - box-shadow: "none"
+            - border-radius: "none"
+            - padding-top: "1px"
+            - padding-bottom: "1px"
+
+
+    radial:
+      card:
+        type: "custom:apexcharts-card"
+        graph_span: "[[[ return variables.graph_span ]]]"
+        chart_type: "[[[ return variables.chart_type ]]]"
+        style: |
+          ha-card {
+            border-radius: "var(--border-radius)";
+            box-shadow: none;
+            padding-left: 10px;
+            padding-bottom: 0px;
+          }
+        header:
+          show: false
+        apex_config:
+          title:
+            floating: false
+            align: "top"
+            style:
+              fontSize: "2px"
+              fontWeight: "bold"
+          chart:
+            foreColor: "rgb(148,148,148)"
+            offsetY: 5
+          legend:
+            show: false
+        series:
+          - entity: "[[[ return variables.entity_1.entity_id ]]]"
+            name: "[[[ return variables.entity_1_name ]]]"
+            color: "[[[ return `var(--google-${variables.entity_1.color})`;]]]"
+            max: "[[[ return variables.entity_1.max_value ]]]"
+            min: "[[[ return variables.entity_1.min_value ]]]"
+          - entity: "[[[ return variables.entity_2.entity_id ]]]"
+            name: "[[[ return variables.entity_2_name ]]]"
+            color: "[[[ return `var(--google-${variables.entity_2.color})`;]]]"
+            max: "[[[ return variables.entity_2.max_value ]]]"
+            min: "[[[ return variables.entity_2.min_value ]]]"
+          - entity: "[[[ return variables.entity_3.entity_id ]]]"
+            name: "[[[ return variables.entity_3_name ]]]"
+            color: "[[[ return `var(--google-${variables.entity_3.color})`;]]]"
+            max: "[[[ return variables.entity_3.max_value ]]]"
+            min: "[[[ return variables.entity_3.min_value ]]]"
+          - entity: "[[[ return variables.entity_4.entity_id ]]]"
+            name: "[[[ return variables.entity_4_name ]]]"
+            color: "[[[ return `var(--google-${variables.entity_4.color})`;]]]"
+            max: "[[[ return variables.entity_4.max_value ]]]"
+            min: "[[[ return variables.entity_4.min_value ]]]"

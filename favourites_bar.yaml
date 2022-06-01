@@ -1,0 +1,191 @@
+type: custom:stack-in-card
+mode: vertical
+keep:
+  box_shadow: false
+  margin: true
+  border_radius: true
+  background: true
+  outer_padding: true
+style: |
+  ha-card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    background-color: rgb(var(--primary-text-rgb),0.05);
+  }
+cards:
+  - type: "custom:button-card"
+    template: "card_title_fixed"
+    name: "Favourites"
+  - type: custom:state-switch
+    entity: user
+    default: default
+    states:
+      Ben:
+        type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "cover.garage"
+            variables:
+              icon_color_1: "orange"
+              color_state_1: "open"
+              icon_state_1: "mdi:garage-open"
+            tap_action:
+              action: "call-service"
+              service: "cover.toggle"
+              service_data:
+                entity_id: "cover.garage"
+              haptic: "success"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "vacuum.robomac"
+            icon: "phu:roborock"
+            variables:
+              icon_color_1: "blue"
+              color_state_1: "cleaning"
+              icon_state_1: "phu:roborock"
+              icon_color_2: "orange"
+              color_state_2: "returning to dock"
+              icon_state_2: "phu:roborock"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "climate.air_conditioner"
+            variables:
+              icon_color_1: "blue"
+              color_state_1: "cool"
+              icon_state_1: "mdi:snowflake"
+              icon_color_2: "red"
+              color_state_2: "heat"
+              icon_state_2: "mdi:fire"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "input_boolean.coffee_machine"
+            variables:
+              icon_color_1: "teal"
+              color_state_1: "on"
+            tap_action:
+              action: "call-service"
+              service: "input_boolean.toggle"
+              service_data:
+                entity_id: "input_boolean.coffee_machine"
+              haptic: "success"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "media_player.lounge_room_sonos"
+            variables:
+              icon_color_1: "green"
+              color_state_1: "playing"
+              icon_state_1: "phu:sonos-arc"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+      Jess:
+        type: horizontal-stack
+        cards:
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "cover.garage"
+            variables:
+              icon_color_1: "red"
+              color_state_1: "open"
+              tap_action:
+                action: "call-service"
+                service: "cover.toggle"
+                service_data:
+                  entity_id: "cover.garage"
+                haptic: "success"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "vacuum.robomac"
+            icon: "phu:roborock"
+            variables:
+              icon_color_1: "yellow"
+              color_state_1: "cleaning"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "climate.air_conditioner"
+            variables:
+              icon_color_1: "blue"
+              color_state_1: "cool"
+              icon_color_2: "red"
+              color_state_2: "heat"
+            state:
+              - value: "cool"
+                icon: "mdi:snowflake"
+              - value: "heat"
+                icon: "mdi:fire"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "input_boolean.boys_bedtime"
+            variables:
+              icon_color_1: "blue"
+              color_state_1: "on"
+            tap_action:
+              action: "call-service"
+              service: "cover.toggle"
+              service_data:
+                entity_id: "input_boolean.boys_bedtime"
+              haptic: "success"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px
+          - type: "custom:button-card"
+            template: "favourites_button"
+            entity: "light.jess_lamp"
+            variables:
+              icon_color_1: "yellow"
+              color_state_1: "on"
+          - type: 'custom:button-card'
+            color_type: blank-card
+            styles:
+              card:
+                - width: 1px

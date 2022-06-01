@@ -1,0 +1,49 @@
+---
+card_generic_swap_vert:
+  color: "var(--google-grey)"
+  template:
+#    - "icon_info_bg"
+    - "ulm_language_variables"
+  layout: vertical
+  aspect_ratio: 1/1.2
+  show_icon: true
+  show_name: true
+  show_state: true
+  show_label: true
+  styles:
+    icon:
+      - color: "rgba(var(--color-theme),0.9)"
+    state:
+#      - justify-self: "start"
+#      - align-self: "center"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+    label:
+#      - justify-self: "start"
+#      - align-self: "center"
+      - font-weight: "bold"
+      - font-size: "14px"
+      - margin-top: "3px"
+      - filter: "opacity(100%)"
+    name:
+#      - align-self: "start"
+#      - justify-self: "center"
+      - font-weight: "bold"
+      - font-size: "14px"
+      - margin-top: "3px"
+      - filter: "opacity(100%)"
+    img_cell:
+      - background-color: "rgba(var(--color-theme),0.05)"
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "42px"
+      - height: "42px"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+  size: "20px"
+#    grid:
+#      - grid-template-areas: "'i' 'n' 'l'"
+#      - grid-template-columns: "auto"
+#      - grid-template-rows: "min-content min-content min-content"

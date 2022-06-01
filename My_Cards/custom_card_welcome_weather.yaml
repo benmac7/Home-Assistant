@@ -1,0 +1,86 @@
+---
+card_welcome_weather:
+  template:
+    - "icon_only_large"
+#    - "blue_no_state"
+  tap_action:
+    action: "navigate"
+    navigation_path: "[[[ return variables.ulm_card_navigate_path; ]]]"
+  label: "[[[ return variables.ulm_card_navigate_title; ]]]"
+  weather: "Testing"
+#  icon: "[[[ return variables.ulm_card_navigate_icon; ]]]"
+  styles:
+    icon:
+      - color: "rgba(var(--color-blue),0.7)"
+      - size: "60%"
+    label:
+      - align-self: "center"
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+      - margin-left: "12px"
+      - filter: "opacity(100%)"
+    weather:
+      - align-self: "center"
+      - justify-self: "start"
+      - font-weight: "normal"
+      - font-size: "14px"
+      - margin-left: "12px"
+      - filter: "opacity(100%)"
+    img_cell:
+      - background-color: "rgba(var(--color-blue), 0.2)"
+    grid:
+      - grid-template-areas: "'i s' 'i l'"
+      - grid-template-columns: "min-content min-content"
+      - grid-template-rows: "min-content min-content"
+  state:
+    - value: "Mostly Cloudy"
+      color: purple
+    - value: "Partly Cloudy"
+      color: purple
+    - value: "Sunny"
+      color: orange
+    - value: "Overcast"
+      color: blue
+    - value: "Possible Light Rain"
+      color: blue
+    - value: "Light Rain"
+      color: blue
+    - value: "Rain"
+      color: blue
+    - value: "Possible Drizzle"
+      color: blue
+    - value: "Clear"
+      color: orange
+    - value: "Windy"
+      color: pink
+icon_only_large:
+  color: "var(--google-grey)"
+  show_icon: true
+  show_label: true
+  show_name: false
+  styles:
+    icon:
+      - color: "rgba(var(--color-theme),0.2)"
+    label:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bold"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+      - margin-left: "12px"
+    img_cell:
+      - background-color: "rgba(var(--color-theme),0.05)"
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "70px"
+      - height: "70px"
+    grid:
+      - grid-template-areas: "'i l'"
+      - grid-template-columns: "min-content auto"
+      - grid-template-rows: "min-content"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "12px"
+  size: "20px"

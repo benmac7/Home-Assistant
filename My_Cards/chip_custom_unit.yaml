@@ -1,0 +1,17 @@
+---
+chip_custom_unit:
+  template: "chips"
+  variables:
+    unit: "°C"
+  tap_action:
+    action: "more-info"
+    entity: "[[[ return variables.ulm_chip_mdi_icon_state_entity ]]]"
+  triggers_update: "all"
+  show_icon: true
+  icon: "[[[ return variables.ulm_chip_mdi_icon_state_icon ]]]"
+  label: "[[[ return states[variables.ulm_chip_mdi_icon_state_entity].state + variables.unit]]]"
+  styles:
+    grid:
+      - grid-template-areas: "'i l'"
+    icon:
+      - color: "[[[ return variables.ulm_chip_mdi_icon_state_color ]]]"

@@ -1,0 +1,463 @@
+---
+custom_card_room_madir:
+  template:
+    - "ulm_language_variables"
+  variables:
+    room_card_area_name: "your area name"    
+    room_card_image_path: "your area image url"
+    room_card_climate_entity: "your area climate entity"    
+    room_card_label: true        
+  color: "var(--google-grey-500)"
+  show_icon: false
+  show_name: true
+  show_label: true
+  triggers_update: "all"
+
+
+  label: |-
+    [[[
+      if (variables.room_card_label) {
+        return  '<ha-icon icon="mdi:thermometer" style="width: 16px; height: 16px;"></ha-icon>' + (entity.attributes.current_temperature || entity.attributes.temperature || entity.state || '-') + 'Â°C' + ' | ' 
+        + '<ha-icon icon="mdi:water-percent" style="width: 18px; height: 18px;"></ha-icon>' + (entity.attributes.current_humidity || entity.attributes.humidity || entity.state || '-') + '%' + ' | '
+        + '<ha-icon icon="mdi:lightbulb-on" style="width: 16px; height: 16px;"></ha-icon>' + ' count ' + (entity.attributes.current_humidity || entity.attributes.humidity || entity.state || '-') + '%';
+                                      
+      } else if (entity.state == "on") {
+          return variables.ulm_on
+      } else if (entity.state == "off") {
+          return variables.ulm_off
+      } else {
+        return entity.state
+      }
+    ]]]
+
+
+##  {{ expand(area_entities('Bedroom 1')) | selectattr('domain','eq','light') | selectattr('state','eq','on') | list | count }}
+## {{ area_id('my_device_id') }}
+
+
+
+
+
+
+
+
+# state:
+#   - operator: "template"
+#     value: >
+#       [[[
+#         return (variables.entity_8.state != "on")
+#       ]]]
+#     styles:
+#       card:
+#         - background-image: >
+#             [[[
+#               return 'linear-gradient(to bottom, rgba(0,0,0,0.2) 0%,rgba(0,0,0,0.4) 100%), url('+ variables.room_card_image_path +')'
+#             ]]]
+
+
+
+
+  state:
+    - styles:
+        custom_fields:
+          notification:
+            - border-radius: "50%"
+            - border: "2px solid var(--card-background-color)"
+            - width: "24.5px"
+            - height: "24.5px"
+            - position: "absolute"
+            - left: "50%"
+            - top: "50%"
+            - transform: "translate(-50%,-50%)"
+            - margin-top: "35%"
+            - margin-left: "-35%"
+            - line-height: 0
+            - display: "grid"
+
+      value: "unavailable"
+
+  styles:
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "12px" 
+      - background-size: "cover"
+      - background-repeat: "no-repeat"
+      - background-position: "center"                   
+      - background-image: >
+                [[[
+                  return 'linear-gradient(to bottom, rgba(0,0,0,0.3) 0%,rgba(0,0,0,0.8) 100%), url('+ variables.room_card_image_path +')'
+                ]]]
+ 
+    state:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "14px"
+      - filter: "opacity(40%)"
+      - margin-left: "6px"
+
+    grid:
+      - grid-template-areas: "'n n n n n n n n' 'l l l l l l l l' 'i1 i2 i3 i4 i5 i6 i7 i8'"
+      - grid-template-columns: " 1fr minmax(0px, 0.5fr) minmax(0px, 0.5fr) . 1fr 1fr 1fr 1fr 1fr"     
+      - grid-template-rows: "min-content 2.5fr 1fr"
+      - justify-items: "center"
+      - gap: "0em 0.5em"
+
+    name:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bold"
+      - color: "white"
+      - font-size: "1.4em"
+      - margin-left: "6px"
+
+    label:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bold"
+      - color: "white"      
+      - font-size: "0.7em"
+      - margin-left: "6px"
+
+
+
+      
+    custom_fields:
+      i1:
+        - justify-self: "start"
+        - align-self: "start"      
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"
+      i2:
+        - justify-self: "start"
+        - align-self: "start"       
+        - border-radius: "50%"
+        - width: "0px"
+        - height: "42px"
+        - display: "grid"
+      i3:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "0px"
+        - height: "42px"
+        - display: "grid"
+      i4:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"
+      i5:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"  
+      i6:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"   
+      i7:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"    
+      i8:
+        - justify-self: "end"
+        - align-self: "end"        
+        - border-radius: "50%"
+        - width: "42px"
+        - height: "42px"
+        - display: "grid"                          
+  custom_fields:
+#    notification: >
+#      [[[
+#        if (entity.state =='unavailable'){
+#          return `<ha-icon icon="mdi:exclamation" style="width: 50%; height: 50%; color: var(--primary-background-color);"></ha-icon>`
+#        }
+#      ]]]
+
+#presence entity
+    i1:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_1?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_1.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_1; ]]]"
+        entity: >
+          [[[
+            if (variables.entity_1.entity_id) {
+              return variables.entity_1.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_1; ]]]"
+            styles:
+              card:
+                - display: "none"
+    i2:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_2?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_2.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_2; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_2?.entity_id) {
+              return variables.entity_2.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_2; ]]]"
+            styles:
+              card:
+                - display: "none"
+    i3:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_3?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_3.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_3; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_3?.entity_id) {
+              return variables.entity_3.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_3; ]]]"
+            styles:
+              card:
+                - display: "none"
+    i4:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_4?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_4.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_4; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_4?.entity_id) {
+              return variables.entity_4.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_4; ]]]"
+            styles:
+              card:
+                - display: "none"
+
+#climate entity
+    i5:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_5?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_5.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_5; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_5?.entity_id) {
+              return variables.entity_5.entity_id;
+            }
+          ]]]
+        icon: mdi:power  
+
+# if icon is stated in UI then uncomment         
+# icon: >
+#   [[[
+#     if (variables?.entity_5?.icon) {
+#       return variables.entity_5.icon;
+#     }
+#   ]]] 
+
+        state:
+          - operator: "template"
+            value: >
+              [[[
+                return (entity.attributes.hvac_modes == 'heat' || entity.attributes.hvac_action == 'heating')
+              ]]]              
+            icon: "mdi:fire" 
+            styles:
+              icon:
+                - color: "rgba(var(--color-red),1)"
+              img_cell:
+                - background-color: "rgba(var(--color-red),0.2)"
+          - operator: "template"
+            value: >
+              [[[
+                return (entity.attributes.hvac_modes == 'heat' || entity.attributes.hvac_action == 'idle')
+              ]]]              
+            icon: "mdi:sync-circle"  
+            styles:
+              icon:
+                - color: "rgba(var(--color-green),1)"
+              img_cell:
+                - background-color: "rgba(var(--color-green),0.2)"        
+            value: >
+              [[[
+                return (entity.attributes.hvac_modes == 'auto' || entity.attributes.hvac_action == 'idle')
+              ]]]
+            icon: "mdi:sync-circle"  
+            styles:
+              icon:
+                - color: "rgba(var(--color-green),1)"
+              img_cell:
+                - background-color: "rgba(var(--color-green),0.2)"
+                
+    i6:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_6?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_6.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_6; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_6?.entity_id) {
+              return variables.entity_6.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_6; ]]]"
+            styles:
+              card:
+                - display: "none"  
+    i7:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_7?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_7.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_7; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_7?.entity_id) {
+              return variables.entity_7.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_7; ]]]"
+            styles:
+              card:
+                - display: "none"  
+    i8:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_8?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_8.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_8; ]]]"
+        entity: >
+          [[[
+            if (variables?.entity_8?.entity_id) {
+              return variables.entity_8.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_8; ]]]"
+            styles:
+              card:
+                - display: "none"                 
+widget_icon_room:
+  variables:
+    tap_action:
+      action: "toggle"
+    hold_action:
+      action: "none"
+  tap_action:
+    action: >
+      [[[ if (variables?.tap_action?.action) return variables.tap_action.action; else return 'none'; ]]]
+    entity: "[[[ return variables.tap_action.entity; ]]]"
+    navigation_path: "[[[ return variables.tap_action.navigation_path; ]]]"
+    url_path: "[[[ return variables.tap_action.url_path; ]]]"
+    service: "[[[ return variables.tap_action.service; ]]]"
+    service_data: "[[[ return variables.tap_action.service_data; ]]]"
+  hold_action:
+    action: >
+      [[[ if (variables?.hold_action?.action) return variables.hold_action.action; else return 'none'; ]]]
+    entity: "[[[ return variables.hold_action.entity; ]]]"
+    navigation_path: "[[[ return variables.hold_action.navigation_path; ]]]"
+    url_path: "[[[ return variables.hold_action.url_path; ]]]"
+    service: "[[[ return variables.hold_action.service; ]]]"
+    service_data: "[[[ return variables.hold_action.service_data; ]]]"
+  show_icon: true
+  show_name: false
+  styles:
+    grid:
+      - grid-template-areas: "'i'"
+    card:
+      - height: "100%"       
+      - box-shadow: "none"
+      - padding: "0px"    
+      - border-radius: "50%"
+    icon:
+      - width: "50%"
+      - height: "50%"
+      - line-height: "0"
+      - color: "rgba(var(--color-theme),0.2)"
+    img_cell:
+      - border-radius: "50%"
+      - background-color: "rgba(var(--color-theme),0.05)"
+  color: "var(--google-grey)"

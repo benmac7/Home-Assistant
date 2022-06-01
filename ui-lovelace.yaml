@@ -1,0 +1,1955 @@
+---
+button_card_templates: !include_dir_merge_named "../../custom_components/ui_lovelace_minimalist/__ui_minimalist__/ulm_templates/"
+
+custom_header:
+  !include "../../lovelace/custom_header/custom_header2.yaml"
+
+title: "UI Lovelace Minimalist"
+theme: "minimalist-mobile"
+background: "var(--background-image)"
+views:
+  - title: "Home"
+    path: home
+    icon: "mdi:home-account"
+    cards:
+      - type: "vertical-stack"
+        cards:
+          - type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: false
+              margin: true
+              border_radius: false
+              background: true
+              outer_padding: true
+            style: |
+              ha-card {
+                background-color: rgba(var(--main-theme),0.6);
+                border-radius: var(--border-radius);
+              }
+            cards:
+
+          # Chips
+              - !include 'chip_bar.yaml'
+              
+          # Weather Greeting
+              - !include 'weather_greeting_small.yaml'
+    
+          # Favourites
+          - !include 'favourites_bar.yaml'
+
+          # Rooms
+          - !include 'room_view.yaml'
+
+
+  # Presence
+  - !include 'presence.yaml'
+
+  # Climate
+  - title: "Climate"
+    path: climate
+    icon: "mdi:thermometer"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-blue),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-blue-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/home
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+                  - type: "custom:button-card"
+                    color_type: blank-card
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Climate"
+            variables:
+              ulm_card_navigate_title: Climate
+              ulm_card_navigate_icon: mdi:thermometer
+              icon_color: blue
+              background_color: blue-bg
+      - type: "vertical-stack"
+        cards:
+          - type: custom:swipe-card
+            parameters:
+              spaceBetween: 8
+              pagination:
+                type: 'bullets'
+            cards:
+              - type: vertical-stack
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: "custom:button-card"
+                        template:
+                          - "card_input_boolean"
+                          - "red_on"
+                          - "ulm_language_variables"
+                        entity: input_boolean.cold_night
+                        name: "Cold Night"
+                      - type: "custom:button-card"
+                        template:
+                          - "card_input_boolean"
+                          - "blue_on"
+                          - "ulm_language_variables"
+                        entity: input_boolean.hot_night
+                        name: "Hot Night"
+                  - type: "custom:button-card"
+                    color_type: blank-card
+                    styles:
+                      card:
+                        - height: 2px
+                  - type: "custom:button-card"
+                    template: card_thermostat
+                    entity: climate.air_conditioner
+                    variables:
+                      ulm_card_thermostat_enable_collapse: false
+                      ulm_card_thermostat_enable_controls: true
+                      ulm_card_thermostat_enable_hvac_modes: true
+                      ulm_card_thermostat_enable_popup: true
+                      ulm_card_thermostat_enable_background_color: false
+                      ulm_card_thermostat_enable_display_temperature: true
+                      ulm_card_thermostat_icon: "mdi:thermostat"
+                  - type: "custom:button-card"
+                    template: card_thermostat
+                    entity: climate.rumpus_room_ac
+                    variables:
+                      ulm_card_thermostat_enable_collapse: false
+                      ulm_card_thermostat_enable_controls: true
+                      ulm_card_thermostat_enable_hvac_modes: true
+                      ulm_card_thermostat_enable_popup: true
+                      ulm_card_thermostat_enable_background_color: false
+                      ulm_card_thermostat_enable_display_temperature: true
+                      ulm_card_thermostat_icon: "mdi:thermostat"
+                  - type: "custom:button-card"
+                    template: card_thermostat
+                    entity: climate.outdoor_heater
+                    variables:
+                      ulm_card_thermostat_enable_collapse: false
+                      ulm_card_thermostat_enable_controls: true
+                      ulm_card_thermostat_enable_hvac_modes: true
+                      ulm_card_thermostat_enable_popup: true
+                      ulm_card_thermostat_enable_background_color: false
+                      ulm_card_thermostat_enable_display_temperature: true
+                      ulm_card_thermostat_icon: "mdi:patio-heater"
+                  - type: "custom:button-card"
+                    color_type: blank-card
+                    styles:
+                      card:
+                        - height: 30px
+              - type: vertical-stack
+                cards:
+                  - type: "custom:button-card"
+                    template: "card_title_fixed_small"
+                    name: "Girl's Room"
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-blue)"
+                          ulm_card_graph_name: Temperature
+                          ulm_card_graph_entity: sensor.girls_sensor_temperature
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-red)"
+                          ulm_card_graph_name: Humidity
+                          ulm_card_graph_entity: sensor.girls_sensor_humidity
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                  - type: "custom:button-card"
+                    template: "card_title_fixed_small"
+                    name: "Seb's Room"
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-blue)"
+                          ulm_card_graph_name: Temperature
+                          ulm_card_graph_entity: sensor.sebs_sensor_temperature
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-red)"
+                          ulm_card_graph_name: Humidity
+                          ulm_card_graph_entity: sensor.sebs_sensor_humidity
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                  - type: "custom:button-card"
+                    template: "card_title_fixed_small"
+                    name: "Main Bedroom"
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-blue)"
+                          ulm_card_graph_name: Temperature
+                          ulm_card_graph_entity: sensor.bedroom_sensor_temperature
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-red)"
+                          ulm_card_graph_name: Humidity
+                          ulm_card_graph_entity: sensor.bedroom_sensor_humidity
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                  - type: "custom:button-card"
+                    template: "card_title_fixed_small"
+                    name: "Rumpus"
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-blue)"
+                          ulm_card_graph_name: Temperature
+                          ulm_card_graph_entity: sensor.rumpus_sensor_temperature
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+                      - type: 'custom:button-card'
+                        template: card_graph
+                        variables:
+                          ulm_card_graph_color: "var(--google-red)"
+                          ulm_card_graph_name: Humidity
+                          ulm_card_graph_entity: sensor.rumpus_sensor_humidity
+                          ulm_card_graph_type: fill
+                          ulm_card_graph_hours: 24
+
+  # Energy - Need to add Power swipe
+  - title: "Energy"
+    icon: mdi:home-lightning-bolt-outline
+    path: energy
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-green),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/home
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.power_kw
+                          ulm_chip_mdi_icon_state_icon: mdi:lightning-bolt
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb_nu
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.electricity_cost_today
+                          ulm_chip_mdi_icon_state_icon: mdi:currency-usd
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Energy"
+            variables:
+              ulm_card_navigate_title: Energy
+              ulm_card_navigate_icon: mdi:home-lightning-bolt-outline
+              icon_color: green
+              background_color: green-bg
+
+      - type: horizontal-stack
+        cards:
+          - type: energy-date-selection
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                  padding-bottom: 0px;
+                  padding-top: 0px;
+                }
+      - type: horizontal-stack
+        cards:
+          - type: energy-usage-graph
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                }
+      - type: horizontal-stack
+        cards:
+          - type: energy-distribution
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                }
+      - type: horizontal-stack
+        cards:
+          - type: energy-devices-graph
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                }
+
+  # Vacuum
+  - title: "Vacuum"
+    path: vacuum
+    icon: "phu:roborock"
+    cards:
+        - type: custom:stack-in-card
+          mode: vertical
+          keep:
+            box_shadow: true
+            margin: true
+            border_radius: true
+            background: true
+            outer_padding: true
+          style: |
+            ha-card {
+              background-color: rgba(var(--color-yellow),0.7);
+              border-radius: var(--border-radius);
+            }
+          cards:
+            - type: "custom:layout-card"
+              layout_type: grid
+              layout:
+                grid-template-columns: 24% 76%
+                margin: 0px 0px 0px 0px
+              cards:
+                - type: custom:stack-in-card
+                  mode: vertical
+                  keep:
+                    box_shadow: false
+                    margin: false
+                    border_radius: true
+                    background: false
+                    outer_padding: false
+                  style: |
+                    ha-card {
+                      background-color: rgba(var(--color-yellow-bg),1.0);
+                      border-radius: var(--border-radius-bar);
+                      box-shadow: none;
+                    }
+                  cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: 'custom:button-card'
+                            template: chip_back
+                            variables:
+                              ulm_chip_back_path: /ui-lovelace-minimalist/home
+                          - type: 'custom:button-card'
+                            template: chip_navigate
+                            variables:
+                              ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                              ulm_chip_navigate_icon: mdi:home
+                - type: custom:stack-in-card
+                  mode: vertical
+                  keep:
+                    box_shadow: false
+                    margin: false
+                    border_radius: true
+                    background: false
+                    outer_padding: false
+                  style: |
+                    ha-card {
+                      background-color: rgba(var(--color-yellow-bg),1.0);
+                      border-radius: var(--border-radius-bar);
+                      box-shadow: none;
+                    }
+                  cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: conditional
+                            conditions:
+                            - entity: vacuum.robomac
+                              state: "error"
+                            card:
+                              type: "custom:button-card"
+                              template: chip_mdi_icon_only
+                              variables:
+                                ulm_chip_mdi_icon_only_entity: vacuum.robomac
+                                ulm_chip_mdi_icon_only_icon: mdi:alert-circle
+                                ulm_chip_mdi_icon_only_icon_color: var(--color-red)
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.robomac_brush
+                              ulm_chip_mdi_icon_state_icon: mdi:broom
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.robomac_dirt_sensor
+                              ulm_chip_mdi_icon_state_icon: mdi:leak
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.robomac_filter
+                              ulm_chip_mdi_icon_state_icon: mdi:air-filter
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.robomac_side_brush
+                              ulm_chip_mdi_icon_state_icon: mdi:brush
+            - type: "custom:button-card"
+              template:
+                - "card_title_icon"
+              name: "Robomac"
+              variables:
+                ulm_card_navigate_title: Robomac
+                ulm_card_navigate_icon: phu:roborock
+                icon_color: yellow
+                background_color: yellow-bg
+        - type: custom:xiaomi-vacuum-map-card
+          style: |
+            ha-card {
+              border-radius: var(--border-radius);
+              box-shadow: var(--box-shadow);
+              --map-card-primary-color: rgba(var(--color-yellow),0.5);
+              --map-card-secondary-color: rgba(var(--color-yellow),0.2);
+              --map-card-zoomer-background: rgba(var(--color-yellow),0.05);
+              --map-card-room-icon-color: rgb(var(--color-grey));
+              --map-card-room-icon-color-selected: rgb(var(--color-yellow));
+              --map-card-predefined-point-icon-color: rgb(var(--color-grey));
+              --map-card-predefined-point-icon-color-selected: rgb(var(--color-yellow));
+            }
+          entity: vacuum.robomac
+          map_source:
+            camera: camera.xiaomi_cloud_map_extractor
+          vacuum_platform: default
+          append_tiles: true
+          tiles:
+            - label: "Last Clean"
+              entity: sensor.robomac_last_clean
+              icon: mdi:clock-check-outline
+          calibration_source:
+            camera: true
+          map_modes:
+            - template: vacuum_clean_zone
+            - template: vacuum_goto 
+            - template: vacuum_goto_predefined
+              predefined_selections:
+                - position: [ 28450, 32820 ]
+                  icon:
+                    name: "mdi:trash-can"
+                    x: 28450
+                    y: 32820
+            - template: vacuum_clean_segment
+              predefined_selections:
+                - id: 1
+                  icon:
+                    name: "mdi:bunk-bed"
+                    x: 33500
+                    'y': 31600
+                - id: 2
+                  icon:
+                    name: "mdi:toilet"
+                    x: 30750
+                    'y': 32000
+                - id: 16
+                  icon:
+                    name: "mdi:fridge"
+                    x: 28500
+                    'y': 30200
+                - id: 19
+                  icon:
+                    name: "mdi:food-turkey"
+                    x: 24550
+                    'y': 30000
+                - id: 20
+                  icon:
+                    name: "mdi:bed-king"
+                    x: 18000
+                    'y': 26000
+                - id: 21
+                  icon:
+                    name: "mdi:bed-single"
+                    x: 31500
+                    'y': 26000
+                - id: 22
+                  icon:
+                    name: "mdi:sofa"
+                    x: 22900
+                    'y': 26000
+                - id: 23
+                  icon:
+                    name: "mdi:airballoon"
+                    x: 28000
+                    'y': 26000
+
+  # Settings
+  - title: "Settings"
+    path: settings
+    icon: "mdi:cog-outline"
+    cards:
+        - type: custom:stack-in-card
+          mode: vertical
+          keep:
+            box_shadow: true
+            margin: true
+            border_radius: true
+            background: true
+            outer_padding: true
+          style: |
+            ha-card {
+              background-color: rgba(var(--color-grey),0.7);
+              border-radius: var(--border-radius);
+            }
+          cards:
+            - type: "custom:layout-card"
+              layout_type: grid
+              layout:
+                grid-template-columns: 24% 76%
+                margin: 0px 0px 0px 0px
+              cards:
+                - type: custom:stack-in-card
+                  mode: vertical
+                  keep:
+                    box_shadow: false
+                    margin: false
+                    border_radius: true
+                    background: false
+                    outer_padding: false
+                  style: |
+                    ha-card {
+                      background-color: rgba(var--(color-grey-bg),1.0);
+                      border-radius: var(--border-radius-bar);
+                      box-shadow: none;
+                    }
+                  cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: 'custom:button-card'
+                            template: chip_back
+                            variables:
+                              ulm_chip_back_path: /ui-lovelace-minimalist/home
+                          - type: 'custom:button-card'
+                            template: chip_navigate
+                            variables:
+                              ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                              ulm_chip_navigate_icon: mdi:home
+                - type: "custom:button-card"
+                  color_type: blank-card
+            - type: "custom:button-card"
+              template:
+                - "card_title_icon"
+              name: "Settings and Information"
+              variables:
+                ulm_card_navigate_title: Settings and Information
+                ulm_card_navigate_icon: mdi:cog-outline
+                icon_color: grey
+                background_color: grey-bg
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+            - notification_alert
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/HA
+            ulm_card_navigate_title: Home Assistant
+            ulm_card_navigate_icon: mdi:home-assistant
+            alert_entity: group.updaters
+            icon_color: ha-blue
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/network
+            ulm_card_navigate_title: Network
+            ulm_card_navigate_icon: mdi:wifi
+            icon_color: purple
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/batteries
+            ulm_card_navigate_title: Batteries
+            ulm_card_navigate_icon: mdi:battery
+            icon_color: green
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/devices
+            ulm_card_navigate_title: Devices
+            ulm_card_navigate_icon: mdi:devices
+            icon_color: teal
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color            
+            - notification_alert
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/NAS
+            ulm_card_navigate_title: NAS
+            ulm_card_navigate_icon: mdi:nas
+            alert_entity: binary_sensor.macnas_update_available
+            icon_color: pink
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/calendar
+            ulm_card_navigate_title: Calendars
+            ulm_card_navigate_icon: mdi:calendar
+            icon_color: orange
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/doors
+            ulm_card_navigate_title: Doors
+            ulm_card_navigate_icon: mdi:door
+            icon_color: green
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/appliances
+            ulm_card_navigate_title: Appliances
+            ulm_card_navigate_icon: mdi:dishwasher
+            icon_color: red
+        - type: custom:button-card
+          template:
+            - card_navigate_mod
+            - custom_icon_color
+          variables:
+            ulm_card_navigate_path: /ui-lovelace-minimalist/lights
+            ulm_card_navigate_title: Lights
+            ulm_card_navigate_icon: mdi:lightbulb-variant-outline
+            icon_color: yellow
+
+
+  # Settings -> Calendars
+  - title: "Calendars"
+    path: calendar
+    visible: false
+    icon: "mdi:calendar"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-orange),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-orange-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+                  - type: "custom:button-card"
+                    color_type: blank-card
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Calendars"
+            variables:
+              ulm_card_navigate_title: Calendars
+              ulm_card_navigate_icon: mdi:calendar
+              icon_color: orange
+              background_color: orange-bg
+
+      - type: custom:swipe-card
+        parameters:
+          spaceBetween: 8
+          pagination:
+            type: 'bullets'
+        cards:
+          - type: vertical-stack
+            cards:
+              - type: "custom:button-card"
+                template: "card_title_fixed_small"
+                name: "Ben and Jess"
+              - type: "custom:calendar-card"
+                progressBar: true
+                showLocation: true
+                hideHeader: true
+                entities:
+                  - calendar.benandjess7_gmail_com
+              - type: "custom:button-card"
+                color_type: blank-card
+                styles:
+                  card:
+                    - height: 30px
+          - type: vertical-stack
+            cards:
+              - type: "custom:button-card"
+                template: "card_title_fixed_small"
+                name: "Eden and Siena"
+              - type: "custom:calendar-card"
+                progressBar: true
+                showLocation: true
+                hideHeader: true
+                entities:
+                  - calendar.eden_and_siena
+              - type: "custom:button-card"
+                color_type: blank-card
+                styles:
+                  card:
+                    - height: 30px
+          - type: vertical-stack
+            cards:
+              - type: "custom:button-card"
+                template: "card_title_fixed_small"
+                name: "Holidays"
+              - type: "custom:calendar-card"
+                progressBar: true
+                showLocation: true
+                hideHeader: true
+                entities:
+                  - calendar.holidays
+              - type: "custom:button-card"
+                color_type: blank-card
+                styles:
+                  card:
+                    - height: 30px
+
+  # Doors
+  - title: "Doors"
+    path: doors
+    visible: false
+    icon: "mdi:door-open"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-green),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/home
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.current_doors_open
+                            state_not: "0"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.current_doors_open
+                            ulm_chip_mdi_icon_state_icon: mdi:door-open
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Doors"
+            variables:
+              ulm_card_navigate_title: Doors
+              ulm_card_navigate_icon: mdi:door
+              icon_color: green
+              background_color: green-bg
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Garage"
+      - type: "custom:auto-entities"
+        card:
+          type: "grid"
+          columns: 2
+          square: false
+        card_param: "cards"
+        sort:
+          count: 20
+          method: "state"
+          reverse: "true"
+        filter:
+          include:
+            - attributes:
+                device_class: "garage"
+              options:
+                type: "custom:button-card"
+                template:
+                  - "card_input_boolean"
+                  - "green_on"
+                  - "ulm_language_variables"
+                entity: "this.entity_id"
+                tap_action:
+                  action: "more-info"
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Doors"
+      - type: "custom:auto-entities"
+        card:
+          type: "grid"
+          columns: 2
+          square: false
+        card_param: "cards"
+        sort:
+          count: 20
+          method: "state"
+          reverse: "true"
+        filter:
+          include:
+            - attributes:
+                device_class: "door"
+              options:
+                type: "custom:button-card"
+                template:
+                  - "card_input_boolean"
+                  - "green_on"
+                  - "ulm_language_variables"
+                entity: "this.entity_id"
+                tap_action:
+                  action: "more-info"
+          exclude:
+            - entity_id: "binary_sensor.lounge_doors"
+            
+  # Lights
+  - title: "Lights"
+    path: lights
+    visible: false
+    icon: "mdi:lightbulb"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-yellow),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-yellow-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/home
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-yellow-bg),1.0);
+                    border-radius: var(--border-radius);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.lighting_unavailable
+                            state_not: "0"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.lighting_unavailable
+                            ulm_chip_mdi_icon_state_icon: mdi:alert-circle
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.current_lights_on
+                            state_not: "0"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.current_lights_on
+                            ulm_chip_mdi_icon_state_icon: mdi:lightbulb
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.light_power_combined
+                          ulm_chip_mdi_icon_state_icon: mdi:power-socket-au
+                      - type: "custom:button-card"
+                        template: chip_mdi_icon_state_nb
+                        variables:
+                          ulm_chip_mdi_icon_state_entity: sensor.lighting_energy
+                          ulm_chip_mdi_icon_state_icon: mdi:lightning-bolt
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Lights"
+            variables:
+              ulm_card_navigate_title: Lights
+              ulm_card_navigate_icon: mdi:lightbulb-variant-outline
+              icon_color: yellow
+              background_color: yellow-bg
+      - type: "custom:auto-entities"
+        card:
+          type: "grid"
+          columns: 2
+          square: false
+        card_param: "cards"
+        sort:
+          method: "state"
+          reverse: "true"
+        filter:
+          include:
+            - domain: "light"
+              options:
+                type: "custom:button-card"
+                template:
+                   - "card_light"
+                   - "ulm_language_variables"
+                entity: "this.entity_id"
+                tap_action:
+                  action: "toggle"
+          exclude:
+            - entity_id: "light.all_lighting"
+            - entity_id: "light.rumpus_1"
+            - entity_id: "light.rumpus_2"
+            - entity_id: "light.rumpus_3"
+            - entity_id: "light.front_lights"
+            - entity_id: "light.rumpus_lights"
+            - entity_id: "light.bedroom_lights"
+            - entity_id: "light.kitchen_lights"
+            - entity_id: "light.lounge_lights"
+            - entity_id: "light.play_room_lights"
+            - entity_id: "light.main_bedroom"            
+
+
+  # Settings -> Batteries
+  - title: "Batteries"
+    path: batteries
+    visible: false
+    icon: "mdi:battery"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-green),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: conditional
+                        conditions:
+                          - entity: sensor.devices_with_low_battery
+                            state_not: "0"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.devices_with_low_battery
+                            ulm_chip_mdi_icon_state_icon: mdi:battery-alert
+
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Batteries"
+            variables:
+              ulm_card_navigate_title: Batteries
+              ulm_card_navigate_icon: mdi:battery
+              icon_color: green
+              background_color: green-bg
+      - type: "custom:auto-entities"
+        card:
+          type: "grid"
+          columns: 2
+          square: false
+        card_param: "cards"
+        sort:
+          count: 30
+        filter:
+          include:
+            - attributes:
+                unit_of_measurement: "%"
+                device_class: "battery"
+              options:
+                type: "custom:button-card"
+                template: "card_battery"
+                variables:
+                  ulm_card_battery_battery_state_entity_id: "this.entity_id"
+                  ulm_card_battery_battery_level_danger: 30
+                  ulm_card_battery_battery_level_warning: 50
+                tap_action:
+                  action: "more-info"
+
+  # Settings -> Home Assistant
+  - title: "Home Assistant"
+    path: HA
+    visible: false
+    icon: "mdi:home-asssistant"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-ha-blue),0.6);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-ha-blue-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-ha-blue-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: conditional
+                        conditions:
+                        - entity: sensor.hacs
+                          state_not: "0"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb_nu
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.hacs
+                            ulm_chip_mdi_icon_state_icon: mdi:store
+                          tap_action:
+                            action: navigate
+                            navigation_path: /hacs/entry
+                      - type: conditional
+                        conditions:
+                        - entity: binary_sensor.core_updates
+                          state: "on"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.version_available
+                            ulm_chip_mdi_icon_state_icon: mdi:home-assistant
+                          tap_action:
+                            action: navigate
+                            navigation_path: /config/dashboard
+                      - type: conditional
+                        conditions:
+                        - entity: binary_sensor.os_updates
+                          state: "on"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_state_entity: sensor.os_available
+                            ulm_chip_mdi_icon_state_icon: mdi:cog-clockwise
+                          tap_action:
+                            action: navigate
+                            navigation_path: /config/dashboard
+                      - type: conditional
+                        conditions:
+                        - entity: binary_sensor.supervisor_updates
+                          state: "on"
+                        card:
+                          type: "custom:button-card"
+                          template: chip_mdi_icon_state_nb
+                          variables:
+                            ulm_chip_mdi_icon_only_entity: sensor.supervisor_available
+                            ulm_chip_mdi_icon_only_icon: mdi:magnify
+                          tap_action:
+                            action: navigate
+                            navigation_path: /config/dashboard
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Home Assistant"
+            variables:
+              ulm_card_navigate_title: Home Assistant
+              ulm_card_navigate_icon: mdi:home-assistant
+              icon_color: ha-blue
+              background_color: ha-blue-bg
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Commands"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "ha-blue_no_state"
+              - "ulm_language_variables"
+            name: "Restart"
+            label: "HA"
+            icon: mdi:home-assistant
+            show_state: false
+            haptic: success
+            tap_action:
+              action: call-service
+              service: homeassistant.restart
+            confirmation:
+              text: 'Are you sure you want to restart Home Assistant?'
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "green_no_state"
+              - "ulm_language_variables"
+            name: "Start"
+            label: "Homekit"
+            icon: mdi:apple
+            show_state: false
+            haptic: success
+            tap_action:
+              action: call-service
+              service: homekit.start
+            confirmation:
+              text: 'Are you sure you want to start HomeKit?'
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "red_no_state"
+              - "ulm_language_variables"
+            name: "Sync"
+            label: "Google"
+            icon: mdi:google-assistant
+            show_state: false
+            haptic: success
+            tap_action:
+              action: call-service
+              service: google_assistant.request_sync
+            confirmation:
+              text: 'Are you sure you want to sync Google Assistant?'
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "yellow_no_state"
+              - "ulm_language_variables"
+            name: "Theme"
+            label: "Mode"
+            icon: mdi:compare
+            show_state: false
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Overview"
+      - type: 'custom:button-card'
+        template: card_homeassistant_updates
+        variables:
+          ulm_card_homeassistant_entity: 'group.updaters'
+          ulm_card_homeassistant_core: "sensor.core_updates"
+          ulm_card_homeassistant_supervisor: "sensor.supervisor_updates"
+          ulm_card_homeassistant_os: "sensor.os_updates"
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Raspberry Pi"
+      - type: "custom:button-card"
+        template: "custom_card_apexcharts_large"
+        variables:
+          chart_type: "radialBar"
+          entity_1:
+            entity_id: "sensor.disk_use_percent_home"
+            icon: ''
+            name: "Disk"
+            color: "blue"
+          entity_2:
+            entity_id: "sensor.processor_use"
+            icon: ''
+            name: "CPU"
+            color: "teal"
+          entity_3:
+            entity_id: "sensor.memory_use_percent"
+            icon: ''
+            name: "RAM"
+            color: "purple"
+          entity_4:
+            entity_id: "sensor.rpi_cpu_temperature"
+            icon: ''
+            name: "Temp"
+            color: "pink"
+            max_value: 70
+            min_value: 40
+
+  - title: "NAS"
+    path: NAS
+    visible: false
+    icon: "mdi:nas"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-pink),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-pink-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+                  - type: "custom:button-card"
+                    color_type: blank-card
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "MacNAS"
+            variables:
+              ulm_card_navigate_title: MacNAS
+              ulm_card_navigate_icon: mdi:nas
+              icon_color: pink
+              background_color: pink-bg
+      - type: 'custom:button-card'
+        template:
+          - custom_card_nas
+        variables:
+          ulm_custom_card_nas_sensor: sensor.synology_volume_used_volume_1
+          ulm_custom_card_nas_text: "HDD used"
+          ulm_custom_card_nas_unit: "%"
+
+  # Settings -> Network
+  - title: "Network"
+    path: network
+    visible: false
+    icon: "mdi:wifi"
+    cards:
+      - type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-purple),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-purple-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+                  - type: "custom:button-card"
+                    color_type: blank-card
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Network"
+            variables:
+              ulm_card_navigate_title: Network
+              ulm_card_navigate_icon: mdi:wifi
+              icon_color: purple
+              background_color: purple-bg
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Internet"
+      - type: horizontal-stack
+        cards:
+          - type: custom:button-card
+            template: custom_card_speedtest
+            variables:
+              ulm_custom_card_irmajavi_speedtest_download_speed_entity: sensor.speedtest_download
+              ulm_custom_card_irmajavi_speedtest_upload_speed_entity: sensor.speedtest_upload
+              ulm_custom_card_irmajavi_speedtest_color: blue
+              ulm_custom_card_irmajavi_speedtest_router_name: TP Link
+              ulm_custom_card_irmajavi_speedtest_router_model: Bandwidth
+          - type: custom:button-card
+            template: custom_card_broadband
+            variables:
+              ulm_custom_card_aussiebb_download_entity: sensor.nbn_downloaded_gb
+              ulm_custom_card_aussiebb_upload_entity: sensor.nbn_uploaded_gb
+              ulm_custom_card_aussiebb_color: green
+              ulm_custom_card_aussiebb_name: Aussie Broadband
+              ulm_custom_card_aussiebb_label: Usage
+              ulm_custom_card_aussiebb_remaining: sensor.nbn_billing_cycle_remaining
+      - type: "custom:button-card"
+        template: "card_title_fixed_small"
+        name: "Devices"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "green"
+              - "ulm_language_variables"
+            entity: binary_sensor.internet
+            name: "Internet"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "blue"
+              - "ulm_language_variables"
+            entity: binary_sensor.lounge_room_wi_fi_main
+            name: "Main"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "blue"
+              - "ulm_language_variables"
+            entity: binary_sensor.kitchen_wi_fi
+            name: "Kitchen"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "blue"
+            entity: binary_sensor.bedroom_wi_fi
+            name: "Bedroom"
+      - type: horizontal-stack
+        cards:
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "purple_on"
+              - "ulm_language_variables"
+            entity: binary_sensor.lan
+            name: "LAN"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "yellow"
+              - "ulm_language_variables"
+            entity: binary_sensor.printer
+            name: "Printer"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "pink"
+              - "ulm_language_variables"
+            entity: binary_sensor.nas
+            name: "NAS"
+          - type: "custom:button-card"
+            template:
+              - "card_generic_swap_vert"
+              - "red"
+              - "ulm_language_variables"
+            entity: binary_sensor.envoy
+            name: "Envoy"
+
+  # Weather Dashboard - Accessed via clicking weather icon on main dashboard
+  - title: "Weather"
+    icon: mdi:weather-partly-rainy
+    path: weather
+    cards:
+      - type: custom:state-switch
+        entity: sun.sun
+        default: below_horizon
+        states:
+          below_horizon:
+            type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: true
+              margin: true
+              border_radius: true
+              background: true
+              outer_padding: true
+            style: |
+              ha-card {
+                background-image: linear-gradient(to top, var(--google-teal) 0%, var(--google-purple) 100%);
+                border-radius: var(--border-radius);
+              }
+            cards:
+              - type: "custom:layout-card"
+                layout_type: grid
+                layout:
+                  grid-template-columns: 24% 76%
+                  margin: 0px 0px 0px 0px
+                cards:
+                  - type: custom:stack-in-card
+                    mode: vertical
+                    keep:
+                      box_shadow: false
+                      margin: false
+                      border_radius: true
+                      background: false
+                      outer_padding: false
+                    style: |
+                      ha-card {
+                        background-color: rgba(var(--color-teal-bg),1.0);
+                        border-radius: var(--border-radius-bar);
+                        box-shadow: none;
+                      }
+                    cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: 'custom:button-card'
+                            template: chip_back
+                            variables:
+                              ulm_chip_back_path: /ui-lovelace-minimalist/home
+                          - type: 'custom:button-card'
+                            template: chip_navigate
+                            variables:
+                              ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                              ulm_chip_navigate_icon: mdi:home
+                  - type: custom:stack-in-card
+                    mode: vertical
+                    keep:
+                      box_shadow: false
+                      margin: false
+                      border_radius: true
+                      background: false
+                      outer_padding: false
+                    style: |
+                      ha-card {
+                        background-color: rgba(var(--color-teal-bg),1.0);
+                        border-radius: var(--border-radius-bar);
+                        box-shadow: none;
+                      }
+                    cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_low
+                              ulm_chip_mdi_icon_state_icon: mdi:thermometer-low
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_high
+                              ulm_chip_mdi_icon_state_icon: mdi:thermometer-high
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_precip_probability
+                              ulm_chip_mdi_icon_state_icon: mdi:weather-rainy
+              - type: "custom:button-card"
+                entity: "sensor.dark_sky_summary"
+                template:
+                  - "card_title_icon"
+                name: "Weather"
+                variables:
+                  ulm_card_navigate_title: Weather
+                  ulm_card_navigate_icon: mdi:weather-partly-rainy
+                  icon_color: teal
+                  background_color: teal-bg
+          above_horizon:
+            type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: true
+              margin: true
+              border_radius: true
+              background: true
+              outer_padding: true
+            style: |
+              ha-card {
+                background-image: linear-gradient(to top, #709DCC 0%, #6194C6 35%, #4078AE 70%, #0F4F88 100%);
+                border-radius: var(--border-radius);
+              }
+            cards:
+              - type: "custom:layout-card"
+                layout_type: grid
+                layout:
+                  grid-template-columns: 24% 76%
+                  margin: 0px 0px 0px 0px
+                cards:
+                  - type: custom:stack-in-card
+                    mode: vertical
+                    keep:
+                      box_shadow: false
+                      margin: false
+                      border_radius: true
+                      background: false
+                      outer_padding: false
+                    style: |
+                      ha-card {
+                        background-color: rgba(var(--color-blue-bg),1.0);
+                        border-radius: var(--border-radius-bar);
+                        box-shadow: none;
+                      }
+                    cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: 'custom:button-card'
+                            template: chip_back
+                            variables:
+                              ulm_chip_back_path: /ui-lovelace-minimalist/home
+                          - type: 'custom:button-card'
+                            template: chip_navigate
+                            variables:
+                              ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                              ulm_chip_navigate_icon: mdi:home
+                  - type: custom:stack-in-card
+                    mode: vertical
+                    keep:
+                      box_shadow: false
+                      margin: false
+                      border_radius: true
+                      background: false
+                      outer_padding: false
+                    style: |
+                      ha-card {
+                        background-color: rgba(var(--color-blue-bg),1.0);
+                        border-radius: var(--border-radius-bar);
+                        box-shadow: none;
+                      }
+                    cards:
+                      - type: horizontal-stack
+                        cards:
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_low
+                              ulm_chip_mdi_icon_state_icon: mdi:thermometer-low
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_high
+                              ulm_chip_mdi_icon_state_icon: mdi:thermometer-high
+                          - type: "custom:button-card"
+                            template: chip_mdi_icon_state_nb
+                            variables:
+                              ulm_chip_mdi_icon_state_entity: sensor.dark_sky_precip_probability
+                              ulm_chip_mdi_icon_state_icon: mdi:weather-rainy
+              - type: "custom:button-card"
+                entity: "sensor.dark_sky_summary"
+                template:
+                  - "card_title_icon"
+                name: "Weather"
+                variables:
+                  ulm_card_navigate_title: Weather
+                  ulm_card_navigate_icon: mdi:weather-sunny
+                  icon_color: orange
+                  background_color: blue-bg
+      - type: horizontal-stack
+        cards:
+          - type: "custom:weather-chart-card"
+            entity: weather.dark_sky
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                }
+      - type: horizontal-stack
+        cards:
+          - type: "custom:sun-card"
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius);
+                  box-shadow: var(--box-shadow);
+                }
+      - type: horizontal-stack
+        cards:
+          - type: iframe
+            url: https://embed.windy.com/embed2.html?lat=-34.047828&lon=151.119013&zoom=7&level=surface&overlay=wind&menu=&message=&marker=&calendar=&pressure=&type=map&location=coordinates&detail=&detailLat=-34.047828&detailLon=151.119013&metricWind=default&metricTemp=default&radarRange=-1
+            aspect_ratio: 80%
+            style: |
+                ha-card {
+                  border-radius: var(--border-radius) !important;
+                  box-shadow: var(--box-shadow);
+                }
+
+# HIDDEN PAGES
+  #Rumpus
+  - !include 'rumpus.yaml'
+  
+  #Main Bedroom
+  - !include 'bedroom.yaml'
+  
+  #Sebs Room
+  - !include 'sebs_room.yaml'
+  
+  #Lounge Room
+  - !include 'lounge_room.yaml'
+  
+  #Kitchen
+  - !include 'kitchen.yaml'
+
+  #Outdoors
+  - !include 'outdoors.yaml'
+  
+  #Play Room
+  - !include 'play_room.yaml'
+  
+  #Girls Room
+  - !include 'girls_room.yaml'
+
+  #Laundry
+  - !include 'laundry.yaml'
+
+  #Appliances
+  - !include 'appliances.yaml'
+  
+  #Devices
+  - !include 'devices.yaml'
+
+  #Security
+  - !include 'security.yaml'
+  
+  
+  #Hidden Tast Page for testing cards
+  - title: "Test"
+    path: test
+    icon: "mdi:help-circle"
+    cards:
+      - type: "vertical-stack"
+        cards:
+          - type: horizontal-stack
+            cards:
+              - type: 'custom:button-card'
+                template: chip_navigate
+                variables:
+                  ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                  ulm_chip_navigate_icon: mdi:home
+          - type: "custom:button-card"
+            template: "card_title_fixed"
+            name: "Test Page"

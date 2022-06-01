@@ -1,0 +1,233 @@
+---
+card_title_chip:
+#  template: "chip_mdi_icon_state"
+  variables:
+    - ulm_chip_mdi_icon_state_entity: sensor.sebs_sensor_temperature
+    - ulm_chip_mdi_icon_state_icon: "mdi:thermometer"
+    - ulm_chip_mdi_icon_state_icon_color: blue
+  tap_action:
+    action: "none"
+  show_icon: false
+  entity: "[[[ return variables.ulm_chip_mdi_icon_state_entity ]]]"
+  show_label: true
+  show_name: true
+  styles:
+    card:
+      - background-color: "rgba(0,0,0,0)"
+      - box-shadow: "none"
+      - height: "auto"
+      - width: "auto"
+      - margin-top: "12px"
+      - margin-left: "5px"
+      - margin-bottom: "0px"
+    grid:
+      - grid-template-areas: "'n' 'chip'"
+      - grid-template-columns: "74% 26%"
+    name:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "1.5rem"
+    label:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "1rem"
+      - opacity: "0.4"
+    icon:
+      - justify-self: start
+      - align-self: center
+      - padding-left: 3px
+      - height: 30px
+      - width: 30px
+      - padding-bottom: 0px
+    custom_fields:
+      chip:
+        - justify-self: end
+  custom_fields:
+    chip:
+      card:
+          type: "custom:button-card"
+          template: chip_mdi_icon_state
+          variables:
+            ulm_chip_mdi_icon_state_entity: "[[[ return variables.ulm_chip_mdi_icon_state_entity ]]]"
+            ulm_chip_mdi_icon_state_icon: "[[[ return variables.ulm_chip_mdi_icon_state_icon ]]]"
+            ulm_chip_mdi_icon_state_icon_color: "[[[ return variables.ulm_chip_mdi_icon_state_icon_color ]]]"
+
+card_title_fixed:
+  tap_action:
+    action: "none"
+  show_icon: false
+  show_label: true
+  show_name: true
+  styles:
+    card:
+      - background-color: "rgba(0,0,0,0)"
+      - box-shadow: "none"
+      - height: "auto"
+      - width: "auto"
+      - margin-top: "2px"
+      - margin-left: "5px"
+      - margin-bottom: "0px"
+    grid:
+      - grid-template-areas: "'n' 'l'"
+      - grid-template-columns: "1fr"
+      - grid-template-rows: "min-content min-content"
+    name:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+    label:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "1rem"
+      - opacity: "0.4"
+
+### Card Title Icon ###
+card_title_icon:
+  variables:
+    icon_color: theme
+    background-color: theme
+  template:
+    - "icon_only"
+    - "blue_no_state"
+  tap_action:
+    action: "none"
+  label: "[[[ return variables.ulm_card_navigate_title; ]]]"
+  icon: "[[[ return variables.ulm_card_navigate_icon; ]]]"
+  size: "50%"
+  styles:
+    icon:
+      - color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),1)'; ]]]"
+      - padding: "0px"
+    label:
+      - align-self: "center"
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+      - color: "var(--primary-text-color)"
+      - margin-left: "12px"
+      - filter: "opacity(100%)"
+    img_cell:
+      - background-color: "[[[ return 'rgba(var(--color-' + variables.background_color + '),1)'; ]]]"
+      - width: "42px"
+      - height: "42px"
+      - padding: "0px"
+    grid:
+      - grid-template-areas: "'i l'"
+      - grid-template-columns: "min-content min-content"
+      - grid-template-rows: "min-content"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "none"
+      - margin-left: "6px"
+      - padding: "0px"
+      - background-color: "rgba(0,0,0,0)"
+
+card_title_icon_3:
+  variables:
+    - mdi_icon: "mdi:thermometer"
+    - mdi_icon_color: blue
+  color: "var(--google-grey)"
+  show_icon: true
+  layout: icon_name
+  show_label: false
+  show_name: true
+#  icon: "[[[ return variables.mdi_icon ]]]"
+  styles:
+    icon:
+      - color: "rgba(var(--color-grey),1.0)"
+    name:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+    state:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bolder"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+      - margin-left: "12px"
+    img_cell:
+      - background-color: "rgba(var(--color-grey),0.2)"
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "42px"
+      - height: "42px"
+    card:
+      - border-radius: "21px 8px 8px 21px"
+      - box-shadow: "none"
+      - padding: "0px"
+      - background-color: "rgba(0,0,0,0)"
+  size: "20px"
+
+card_title_icon_2:
+  variables:
+    - mdi_icon: "mdi:thermometer"
+    - mdi_icon_color: blue
+  tap_action:
+    action: "none"
+  show_icon: true
+  show_label: true
+  show_name: true
+  icon: "[[[ return variables.mdi_icon ]]]"
+  styles:
+    card:
+      - background-color: "rgba(0,0,0,0)"
+      - box-shadow: "none"
+      - height: "auto"
+      - width: "auto"
+      - margin-top: "8px"
+      - margin-left: "5px"
+      - margin-bottom: "0px"
+    grid:
+      - grid-template-areas: "'i n'"
+      - grid-template-columns: "min-content 1fr"
+    name:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+    label:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "1rem"
+      - opacity: "0.4"
+    icon:
+      - color: "[[[ return 'rgba(var(--color-' + variables.mdi_icon_color + '),1)'; ]]]"
+      - box-shadow: "var(--box-shadow)"
+    img_cell:
+      - background-color: "[[[ return 'rgba(var(--color-' + variables.mdi_icon_color + '),0.2)'; ]]]"
+      - box-shadow: "var(--box-shadow)"
+      - border-radius: "50%"
+      - place-self: "center"
+      - width: "42px"
+      - height: "42px"
+
+card_title_fixed_small:
+  tap_action:
+    action: "none"
+  show_icon: false
+  show_label: true
+  show_name: true
+  styles:
+    card:
+      - background-color: "rgba(0,0,0,0)"
+      - box-shadow: "none"
+      - height: "auto"
+      - width: "auto"
+      - margin-top: "2px"
+      - margin-left: "5px"
+      - margin-bottom: "0px"
+    grid:
+      - grid-template-areas: "'n' 'l'"
+      - grid-template-columns: "1fr"
+      - grid-template-rows: "min-content min-content"
+    name:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "15px"
+      - opacity: "1.0"
+      - color: "var(--secondary-text-color)"
+    label:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "1rem"
+      - opacity: "0.4"

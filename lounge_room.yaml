@@ -1,0 +1,175 @@
+title: "Lounge Room"
+path: lounge
+visible: false
+icon: "mdi:sofa"
+cards:
+  - type: custom:stack-in-card
+    mode: vertical
+    keep:
+      box_shadow: true
+      margin: true
+      border_radius: true
+      background: true
+      outer_padding: true
+    style: |
+      ha-card {
+        background-color: rgba(var(--color-red),0.7);
+        border-radius: var(--border-radius);
+      }
+    cards:
+      - type: "custom:layout-card"
+        layout_type: grid
+        layout:
+          grid-template-columns: 24% 76%
+          margin: 0px 0px 0px 0px
+        cards:
+          - type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: false
+              margin: false
+              border_radius: true
+              background: false
+              outer_padding: false
+            style: |
+              ha-card {
+                background-color: rgba(var(--color-red-bg),1.0);
+                border-radius: var(--border-radius-bar);
+                box-shadow: none;
+              }
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: 'custom:button-card'
+                    template: chip_back
+                    variables:
+                      ulm_chip_back_path: /ui-lovelace-minimalist/home
+                  - type: 'custom:button-card'
+                    template: chip_navigate
+                    variables:
+                      ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                      ulm_chip_navigate_icon: mdi:home                     
+          - type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: false
+              margin: false
+              border_radius: true
+              background: false
+              outer_padding: false
+            style: |
+              ha-card {
+                background-color: rgba(var(--color-red-bg),1.0);
+                border-radius: var(--border-radius-bar);
+                box-shadow: none;
+              }
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: conditional
+                    conditions:
+                      - entity: light.lounge_lights
+                        state: "on"
+                    card:
+                      type: "custom:button-card"
+                      template: chip_mdi_icon_only
+                      variables:
+                        ulm_chip_mdi_icon_only_entity: light.lounge_lights
+                        ulm_chip_mdi_icon_only_icon: mdi:lightbulb-group
+                        ulm_chip_mdi_icon_only_icon_color: var(--primary-text-color)
+                      tap_action:
+                        action: call-service
+                        service: light.toggle
+                        service_data:
+                          entity_id: light.lounge_lights
+                        haptic: success
+                  - type: conditional
+                    conditions:
+                      - entity: binary_sensor.lounge_doors
+                        state: "on"
+                    card:
+                      type: "custom:button-card"
+                      template: chip_mdi_icon_only
+                      variables:
+                        ulm_chip_mdi_icon_only_entity: binary_sensor.lounge_doors
+                        ulm_chip_mdi_icon_only_icon: mdi:door-open
+                        ulm_chip_mdi_icon_only_icon_color: var(--primary-text-color)
+                  - type: conditional
+                    conditions:
+                      - entity: cover.lounge_blind
+                        state: "open"
+                    card:
+                      type: "custom:button-card"
+                      template: chip_mdi_icon_only
+                      variables:
+                        ulm_chip_mdi_icon_only_entity: cover.lounge_blind
+                        ulm_chip_mdi_icon_only_icon: mdi:blinds-open
+                        ulm_chip_mdi_icon_only_icon_color: var(--primary-text-color)
+                      tap_action:
+                        action: call-service
+                        service: cover.toggle
+                        service_data:
+                          entity_id: cover.lounge_blind
+                        haptic: success
+
+      - type: "custom:button-card"
+        template:
+          - "card_title_icon"
+        name: "Lounge Room"
+        variables:
+          ulm_card_navigate_title: Lounge Room
+          ulm_card_navigate_icon: mdi:sofa
+          icon_color: red
+          background_color: red-bg
+
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Lights"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.lounge_downlights
+        variables:
+          ulm_card_light_enable_popup: true
+          ulm_card_light_icon: "mdi:lightbulb-spot"
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_collapse: false
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.lounge_lamp
+        variables:
+          ulm_card_light_enable_popup: true
+          ulm_card_light_icon: "mdi:floor-lamp"
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_collapse: false
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Blinds"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_cover
+        entity: cover.lounge_blind
+        variables:
+          ulm_card_cover_enable_controls: true
+          ulm_card_cover_enable_slider: false
+
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Media"
+  - type: 'custom:button-card'
+    template: card_media_player_sonos_with_controls_art
+    variables:
+      ulm_card_media_player_with_controls_name: "Sonos"
+      ulm_card_media_player_with_controls_entity: media_player.lounge_room_sonos
+      ulm_card_sonos_use_entity_picture: "true"
+  - type: 'custom:button-card'
+    template:
+      - "card_media_player"
+      - "green_on"
+      - "green_playing"
+    entity: media_player.lounge_room_atv
+    name: Apple TV
+    variables:
+      ulm_card_media_player_enable_popup: true

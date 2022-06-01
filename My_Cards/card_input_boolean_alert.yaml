@@ -1,0 +1,60 @@
+---
+### Card Input Boolean ###
+card_input_boolean_alert:
+  triggers_update: "all"
+  template:
+    - "icon_info_bg"
+    - "ulm_language_variables"
+    - "blue"
+  variables:
+    alert_entity: ""
+  name: "[[[ return entity.attributes.friendly_name != '' ? entity.attributes.friendly_name : entity.entity_id ]]]"
+  label: >
+    [[[
+      if (entity.state != "unavailable"){
+        if (entity.state == "on"){
+          return variables.ulm_on;
+        } else {
+          return variables.ulm_off;
+        }
+      } else {
+        return variables.ulm_unavailable;
+      }
+    ]]]
+  styles:
+    custom_fields:
+      notification:
+        - border-radius: "50%"
+        - position: "absolute"
+        - left: "38px"
+        - top: "8px"
+        - height: "16px"
+        - width: "16px"
+        - border: "1px solid var(--card-background-color)"
+        - font-size: "12px"
+        - line-height: "14px"
+        - background-color: >
+            [[[
+              if (states[variables.alert_entity].state == 'ready'){
+                return "rgba(var(--color-green),1)";
+              } else if (states[variables.alert_entity].state == 'warming'){
+                return "rgba(var(--color-yellow),1)";
+              } else if (states[variables.alert_entity].state == 'not on'){
+                return "rgba(var(--color-red),1)";
+              } else if (states[variables.alert_entity].state == 'on'){
+                return "rgba(var(--color-green),1)";
+              } else if (states[variables.alert_entity].state == 'off'){
+                return "rgba(var(--color-red),1)";
+              } else {
+                return "rgba(var(--color-red),1)";
+              }
+            ]]]
+  custom_fields:
+    notification: >
+      [[[
+        if (states[variables.alert_entity].state == "unavailable" || states[variables.alert_entity].state == "not on"){
+          return `<ha-icon icon="mdi:exclamation" style="width: 12px; height: 12px; color: var(--primary-background-color);"></ha-icon>`
+        } else {
+          return "";
+        }
+      ]]]

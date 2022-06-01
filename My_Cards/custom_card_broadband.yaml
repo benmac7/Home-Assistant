@@ -1,0 +1,212 @@
+---
+custom_card_broadband:
+  triggers_update: "all"
+  show_name: false
+  show_label: false
+  variables:
+    ulm_custom_card_aussiebb_color: "green"
+    ulm_custom_card_aussiebb_name: "Aussie BB"
+    ulm_custom_card_aussiebb_label: "Usage"
+    ulm_custom_card_aussiebb_remaining: "30"
+  styles:
+    grid:
+      - grid-template-areas: "'item1' 'item2' 'item3'"
+      - grid-template-columns: "1fr"
+      - grid-template-rows: "min-content  min-content"
+      - row-gap: "12px"
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "12px"
+  custom_fields:
+    item1:
+      card:
+        type: "custom:button-card"
+        tap_action:
+          action: "none"
+        show_last_changed: false
+        show_label: true
+        show_name: true
+        show_icon: true
+        label: >-
+          [[[ return variables.ulm_custom_card_aussiebb_label
+          ]]]
+        name: >-
+          [[[ return variables.ulm_custom_card_aussiebb_name
+          ]]]
+        icon: "mdi:swap-horizontal"
+        styles:
+          icon:
+            - color: >-
+                [[[ return
+                `rgba(var(--color-${variables.ulm_custom_card_aussiebb_color}),
+                1)`; ]]]
+            - width: "32px"
+          label:
+            - justify-self: "center"
+            - align-self: "start"
+            - font-weight: "bolder"
+            - font-size: "12px"
+            - filter: "opacity(40%)"
+          name:
+            - margin-top: "10px"
+            - justify-self: "center"
+            - font-weight: "bold"
+            - font-size: "14px"
+          img_cell:
+            - background-color: >-
+                [[[ return
+                `rgba(var(--color-${variables.ulm_custom_card_aussiebb_color}),
+                0.2)`; ]]]
+            - border-radius: "50%"
+            - place-self: "center"
+            - width: "62px"
+            - height: "62px"
+          grid:
+            - grid-template-areas: "'i' 'n' 'l'"
+          card:
+            - box-shadow: "none"
+        size: "20px"
+    item2:
+      card:
+        type: "custom:button-card"
+        tap_action:
+          action: "call-service"
+          service: "speedtestdotnet.speedtest"
+        show_icon: true
+        layout: icon_name
+        show_label: false
+        show_name: true
+        styles:
+          icon:
+            - color: "rgba(var(--color-${variables.ulm_custom_card_aussiebb_color}),0.9)"
+#            - width: "20px"
+          img_cell:
+            - background-color: "none"
+            - place-self: "center"
+            - justify-self: "start"
+#            - width: "40px"
+#            - height: "20px"
+          name:
+#            - align-self: "start"
+#            - justify-self: "start"
+            - font-weight: "bold"
+            - font-size: "16px"
+          card:
+            - box-shadow: "none"
+            - border-radius: "10px"
+            - border: "2px solid var(--google-grey)"
+            - padding_bottom: "-8px"
+            - height: "40px"
+            - padding-top: "5px"
+            - padding-left: "5px"
+        name: >-
+          [[[ return states[variables.ulm_custom_card_aussiebb_remaining].state + ' days'
+          ]]]
+        icon: "mdi:calendar-end"
+    item3:
+      card:
+        type: "custom:button-card"
+        template: "list_2_items"
+        custom_fields:
+          item1:
+            card:
+              type: "custom:button-card"
+              tap_action:
+                action: "more-info"
+              color: "var(--google-blue)"
+              show_label: true
+              show_icon: false
+              name: "Downloaded"
+              entity: >-
+                [[[ return
+                    variables.ulm_custom_card_aussiebb_download_entity;
+                ]]]
+              label: |
+                [[[
+                    var state1 = "";
+                    if (states[variables.ulm_custom_card_aussiebb_download_entity].state){
+                      var state1 = states[variables.ulm_custom_card_aussiebb_download_entity].state;
+                      if (states[variables.ulm_custom_card_aussiebb_download_entity].attributes.unit_of_measurement){
+                        state1 += states[variables.ulm_custom_card_aussiebb_download_entity].attributes.unit_of_measurement;
+                      }
+                    }
+                    return state1;
+                ]]]
+              styles:
+                icon:
+                  - width: "30px"
+                  - height: "30px"
+                label:
+                  - align-self: "center"
+                  - justify-self: "center"
+                  - font-weight: "bold"
+                  - font-size: "16px"
+                name:
+                  - align-self: "center"
+                  - justify-self: "center"
+                  - font-weight: "bold"
+                  - font-size: "12px"
+                  - filter: "opacity(40%)"
+                grid:
+                  - grid-template-areas: "'l' 'n'"
+                  - grid-template-columns: "auto"
+                  - grid-template-rows: "min-content"
+                card:
+                  - box-shadow: "none"
+                  - padding-top: "15px"
+                  - padding-botton: "10px"
+                  - background-color: "rgba(var(--color-theme),0.05)"
+                  - border-radius: "14px"
+                  - place-self: "center"
+                  - height: "80px"
+          item2:
+            card:
+              type: "custom:button-card"
+              color: "var(--google-blue)"
+              show_label: true
+              show_icon: false
+              name: "Uploaded"
+              entity: >-
+                [[[ return
+                variables.ulm_custom_card_aussiebb_upload_entity;
+                ]]]
+              label: |
+                [[[
+                    var state1 = "";
+                    if (states[variables.ulm_custom_card_aussiebb_upload_entity].state){
+                        var state1 = states[variables.ulm_custom_card_aussiebb_upload_entity].state;
+                        if (states[variables.ulm_custom_card_aussiebb_upload_entity].attributes.unit_of_measurement){
+                          state1 += states[variables.ulm_custom_card_aussiebb_upload_entity].attributes.unit_of_measurement;
+                        }
+                    }
+                    return state1;
+                ]]]
+              styles:
+                icon:
+                  - width: "30px"
+                  - height: "30px"
+                label:
+                  - align-self: "center"
+                  - justify-self: "center"
+                  - font-weight: "bold"
+                  - font-size: "16px"
+                name:
+                  - align-self: "center"
+                  - justify-self: "center"
+                  - font-weight: "bold"
+                  - font-size: "12px"
+                  - filter: "opacity(40%)"
+                grid:
+                  - grid-template-areas: "'l' 'n'"
+                  - grid-template-columns: "auto"
+                  - grid-template-rows: "min-content"
+                card:
+                  - box-shadow: "none"
+                  - padding-top: "15px"
+                  - padding-botton: "10px"
+                  - background-color: "rgba(var(--color-theme),0.05)"
+                  - border-radius: "14px"
+                  - place-self: "center"
+                  - height: "80px"
+

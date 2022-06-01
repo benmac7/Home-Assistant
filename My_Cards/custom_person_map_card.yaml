@@ -1,0 +1,190 @@
+---
+custom_person_map_card:
+  template:
+    - "ulm_language_variables"
+  variables:
+    icon_color: blue
+    ulm_card_person_use_entity_picture: false
+  color: "var(--google-grey-500)"
+  triggers_update: "all"
+  show_icon: true
+  show_name: true
+  show_label: true
+  show_entity_picture: true
+  entity: "[[[ return variables.ulm_card_person_entity; ]]]"
+  name: "[[[ return states[variables.ulm_card_person_entity].attributes.friendly_name ]]]"
+  label: "[[[ return states[variables.ulm_card_person_entity].state ]]]"
+  size: "50%"
+  aspect_ratio: "1.5/1"
+  show_entity_picture: "[[[ return variables.ulm_card_person_use_entity_picture ]]]"
+  entity_picture: "[[[ return variables.ulm_card_person_use_entity_picture != false ? states[variables.ulm_card_person_entity].attributes.entity_picture\
+    \ : null ]]]"
+  styles:
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+    grid:
+      - grid-template-areas: "'i n n n n i2 i1' 'i l l l l l l' '. . . . . . .' '. . . . . . .' '. . . . . . .'"
+      - grid-template-columns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+      - grid-template-rows: "1fr 1fr 1fr 1fr 1fr"
+      - justify-items: "center"
+    icon:
+      - color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),1)'; ]]]"
+    img_cell:
+      - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '-bg),1)'; ]]]"
+      - border-radius: "50%"
+      - width: "50px"
+      - height: "50px"
+      - max-width: "none"
+      - max-height: "none"
+      - position: "absolute"
+      - left: "3%"
+      - top: "5%"
+#      - transform: "translate(-50%,-50%)"
+#      - margin-top: "25%"
+#      - margin-left: "-25%"
+    name:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bold"
+      - font-size: "18px"
+      - margin-left: "18px"
+      
+    label:
+      - justify-self: "start"
+      - align-self: "start"
+      - font-weight: "bold"
+      - font-size: "14px"
+      - margin-left: "16px"
+      - margin-top: "-8%"
+    state:
+      - justify-self: "start"
+      - font-weight: "bold"
+      - font-size: "12px"
+      - filter: "opacity(40%)"
+      - margin-left: "6px"
+    entity_picture:
+      - height: "50px"
+      - width: "50px"
+      - border-radius: "100%"
+      - border-style: "hidden"
+    custom_fields:
+      i1:
+        - border-radius: "30px"
+        - width: "40px"
+        - height: "40px"
+        - line-height: 0
+        - display: "grid"
+      i2:
+        - border-radius: "50%"
+        - width: "40px"
+        - height: "40px"
+        - line-height: 0
+        - display: "grid"
+#      map:
+#        - align-self: "middle"
+#        - justify-self: "middle"
+#        - border-radius: "var(--border-radius)"
+  custom_fields:
+    i1:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_1?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_1.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_1; ]]]"
+        entity: >
+          [[[
+            if (variables.entity_1.entity_id) {
+              return variables.entity_1.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_1; ]]]"
+            styles:
+              card:
+                - display: "none"
+    i2:
+      card:
+        type: "custom:button-card"
+        template: >
+          [[[
+            var templates = ['widget_icon_room'];
+            if (variables?.entity_2?.templates?.length) {
+              return ['widget_icon_room'].concat(variables.entity_2.templates);
+            }
+            return templates;
+          ]]]
+        variables: "[[[ return variables.entity_2; ]]]"
+        entity: >
+          [[[
+            if (variables.entity_2.entity_id) {
+              return variables.entity_2.entity_id;
+            }
+          ]]]
+        state:
+          - operator: "template"
+            value: "[[[ return !variables.entity_2; ]]]"
+            styles:
+              card:
+                - display: "none"
+#    map:
+#      card:
+#        type: "map"
+#        style: |
+#          ha-card {
+#            box-shadow: none;
+#            border-radius: var(--border-radius);
+#          }
+#        default_zoom: 12
+#        entities:
+#          - "[[[ return variables.ulm_card_person_entity; ]]]"
+
+widget_icon_person:
+  variables:
+    tap_action:
+      action: "toggle"
+    hold_action:
+      action: "none"
+  tap_action:
+    action: >
+      [[[ if (variables?.tap_action?.action) return variables.tap_action.action; else return 'none'; ]]]
+    entity: "[[[ return variables.tap_action.entity; ]]]"
+    navigation_path: "[[[ return variables.tap_action.navigation_path; ]]]"
+    url_path: "[[[ return variables.tap_action.url_path; ]]]"
+    service: "[[[ return variables.tap_action.service; ]]]"
+    service_data: "[[[ return variables.tap_action.service_data; ]]]"
+  hold_action:
+    action: >
+      [[[ if (variables?.hold_action?.action) return variables.hold_action.action; else return 'none'; ]]]
+    entity: "[[[ return variables.hold_action.entity; ]]]"
+    navigation_path: "[[[ return variables.hold_action.navigation_path; ]]]"
+    url_path: "[[[ return variables.hold_action.url_path; ]]]"
+    service: "[[[ return variables.hold_action.service; ]]]"
+    service_data: "[[[ return variables.hold_action.service_data; ]]]"
+  show_icon: true
+  show_name: false
+  styles:
+    grid:
+      - grid-template-areas: "'i'"
+    card:
+      - height: "100%"
+      - box-shadow: "none"
+      - padding: "0px"
+      - border-radius: "50%"
+    icon:
+      - width: "50%"
+      - height: "50%"
+      - line-height: "0"
+      - color: "rgba(var(--color-theme),0.2)"
+    img_cell:
+      - border-radius: "50%"
+      - background-color: "rgba(var(--color-theme),0.05)"
+  size: "15px"
+  color: "var(--google-grey)"

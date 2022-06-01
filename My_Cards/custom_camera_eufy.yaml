@@ -1,0 +1,80 @@
+---
+custom_camera_eufy:
+  template:
+    - "ulm_language_variables"
+  variables:
+    icon_color: blue
+  color: "var(--google-grey-500)"
+  triggers_update: "all"
+  aspect_ratio: "1.5/1"
+  styles:
+    card:
+      - border-radius: "var(--border-radius)"
+      - box-shadow: "var(--box-shadow)"
+      - padding: "12px"
+    grid:
+      - grid-template-areas: "'. . . . . . .' '. . . . . . .' '. . . . . . .' 'item1 item1 item1 item2 item2 item2 item2'"
+      - grid-template-columns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr"
+      - grid-template-rows: "1fr 1fr 1fr min-content"
+      - row-gap: 12px
+#      map:
+#        - align-self: "middle"
+#        - justify-self: "middle"
+#        - border-radius: "var(--border-radius)"
+  custom_fields:
+    item1:
+      card:
+        type: custom:button-card
+        template:
+          - "icon_info"
+        entity: '[[[ return variables.camera_entity ]]]'
+        tap_action:
+          action: more-info
+        label: '[[[ return states[variables.camera_entity].state ]]]'
+        styles:
+          card:
+            - background-color: 'rgba(0,0,0,0)'
+          icon:
+            - color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),1)'; ]]]"
+          img_cell:
+            - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '-bg),1)'; ]]]"
+    item2:
+      card:
+        type: "custom:button-card"
+        template: "list_3_items"
+        styles:
+          card:
+            - background-color: "rgba(0,0,0,0)"
+        custom_fields:
+          item1:
+            card:
+              type: "custom:button-card"
+              template: "widget_icon"
+              tap_action:
+                action: "call-service"
+                service: "camera.turn_on"
+                service_data:
+                  entity_id: "[[[ return variables.camera_entity ]]]"
+              icon: "mdi:power-cycle"
+          item2:
+            card:
+              type: "custom:button-card"
+              template: "widget_icon"
+              tap_action:
+                action: "call-service"
+                service: "camera.turn_off"
+                service_data:
+                  entity_id: "[[[ return variables.camera_entity ]]]"
+              icon: "mdi:power-off"
+          item3:
+            card:
+              type: "custom:button-card"
+              template: "widget_icon"
+              tap_action:
+                action: "call-service"
+                service: "camera.snapshot"
+                service_data:
+                  entity_id: "[[[ return variables.camera_entity ]]]"
+              icon: "mdi:camera-plus"
+
+      

@@ -1,0 +1,145 @@
+title: "Security"
+path: security
+visible: false
+icon: "mdi:security-home"
+cards:
+  - type: custom:state-switch
+    entity: alarm_control_panel.homebase
+    default: disarmed
+    states:
+      disarmed:
+        type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-green),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-green-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Security"
+            variables:
+              ulm_card_navigate_title: Security
+              ulm_card_navigate_icon: mdi:shield-off
+              icon_color: green
+              background_color: green-bg
+      armed_away:
+        type: custom:stack-in-card
+        mode: vertical
+        keep:
+          box_shadow: true
+          margin: true
+          border_radius: true
+          background: true
+          outer_padding: true
+        style: |
+          ha-card {
+            background-color: rgba(var(--color-red),0.7);
+            border-radius: var(--border-radius);
+          }
+        cards:
+          - type: "custom:layout-card"
+            layout_type: grid
+            layout:
+              grid-template-columns: 24% 76%
+              margin: 0px 0px 0px 0px
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                keep:
+                  box_shadow: false
+                  margin: false
+                  border_radius: true
+                  background: false
+                  outer_padding: false
+                style: |
+                  ha-card {
+                    background-color: rgba(var(--color-red-bg),1.0);
+                    border-radius: var(--border-radius-bar);
+                    box-shadow: none;
+                  }
+                cards:
+                  - type: horizontal-stack
+                    cards:
+                      - type: 'custom:button-card'
+                        template: chip_back
+                        variables:
+                          ulm_chip_back_path: /ui-lovelace-minimalist/settings
+                      - type: 'custom:button-card'
+                        template: chip_navigate
+                        variables:
+                          ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                          ulm_chip_navigate_icon: mdi:home
+
+          - type: "custom:button-card"
+            template:
+              - "card_title_icon"
+            name: "Security"
+            variables:
+              ulm_card_navigate_title: Security
+              ulm_card_navigate_icon: mdi:shield-lock
+              icon_color: red
+              background_color: red-bg
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Security System"
+  - type: 'custom:button-card'
+    template:
+      - "custom_alarm"
+    variables:
+      ulm_custom_alarm_grid_state: alarm_control_panel.homebase
+#      ulm_custom_alarm_grid_job_state: alarm_control_panel.homebase
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Cameras"
+  - type: "custom:button-card"
+    entity: "camera.dafang1"
+    template: "custom_card_camera"
+    show_icon: true #True if you set ulm_custom_card_camera_title: true
+    variables:
+      ulm_custom_card_camera_title: false
+      ulm_custom_card_camera_name: "Garage"
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Doors"

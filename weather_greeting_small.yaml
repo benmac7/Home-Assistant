@@ -1,0 +1,114 @@
+type: horizontal-stack
+cards:
+  - type: custom:layout-card
+    layout_type: grid
+    layout:
+      grid-template-columns: 25% 75%
+    cards:
+      - type: vertical-stack
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-style: hidden;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+          }
+        cards:
+          - type: custom:button-card
+            entity: sensor.dark_sky_icon
+            color_type: card
+            size: 50%
+            lock: false
+            show_name: false
+            show_state: false
+            show_label: false
+            show_icon: true
+            show_entity_picture: false
+            tap_action:
+              action: navigate
+              navigation_path: /ui-lovelace-minimalist/weather
+            haptic: success
+            aspect_ratio: 1/1
+            styles:
+              card:
+                - border-radius: 100%
+                - border-style: none
+                - padding: 0px
+                - box-shadow: "var(--box-shadow)"
+                - justify-self: center
+                - margin-top: 12px
+            state:
+              - value: "clear-day"
+                color: '#f0e373'
+                icon: "mdi:weather-sunny"
+              - value: "clear-night"
+                color: '#54416d'
+                icon: "mdi:weather-night"
+              - value: "rain"
+                color: '#416082'
+                icon: "mdi:weather-pouring"
+              - value: "snow"
+                color: '#FFFAFA'
+                icon: "mdi:weather-snowy-heavy"
+              - value: "sleet"
+                color: '#92949b'
+                icon: "mdi:weather-snowy-rainy"
+              - value: "wind"
+                color: '#A3BDDA'
+                icon: "mdi:weather-windy-variant"
+              - value: "fog"
+                color: '#F2F8F7'
+                icon: "mdi:weather-fog"
+              - value: "cloudy"
+                color: '#A3BDDA'
+                icon: "mdi:cloud"
+              - value: "partly-cloudy-day"
+                color: '#86b2bd'
+                icon: "mdi:weather-partly-cloudy"
+              - value: "partly-cloudy-night"
+                color: '#716876'
+                icon: "mdi:weather-night-partly-cloudy"                
+      - type: vertical-stack
+        flex-grow: 2
+        style: |
+          ha-card {
+            box-shadow: none;
+            border-style: hidden;
+            border-bottom-right-radius: 0px;
+            border-bottom-left-radius: 0px;
+          }
+        cards:
+        - type: markdown
+          style:
+            .: |
+              ha-card {
+                 background-color: rgba(0,0,0,0) !important;
+                 box-shadow: none;
+                 padding-top: 0px;
+                 margin-top: 0px;
+              }
+            ha-markdown:
+              $: |
+                ha-markdown-element:first-of-type h2 {
+                  background-color: rgba(0,0,0,0);
+                  color: var(--primary-text-color);
+                  font-size: 18px;
+                  line-height: 18px;
+                }
+                ha-markdown-element:first-of-type h3 {
+                  background-color: rgba(0,0,0,0);
+                  font-weight: normal;
+                  color: var(--secondary-text-color);
+                  font-size: 14px;
+                  line-height: 14px;
+                }
+                ha-markdown-element:second-of-type h3 {
+                  background-color: rgba(0,0,0,0);
+                  color: var(--secondary-text-color);
+                  font-weight: normal;
+                  font-size: 14px;
+                  line-height: 14px;
+                }
+          content: |
+              ## {{ states('input_select.frontend_greeting') }}, {{user}}
+              ### Today will be {{ states('sensor.dark_sky_daytime_high_temperature_1d') }}°C <br/> {{ states('sensor.dark_sky_summary_1d') }}

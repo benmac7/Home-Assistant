@@ -1,0 +1,46 @@
+---
+favourites_button:
+  template:
+    - "ulm_language_variables"
+  variables:
+    icon_color_1: "blue"
+    color_state_1: "on"
+    icon_state_1: "[[[ return entity.attributes.icon; ]]]"
+    icon_color_2: "red"
+    color_state_2: "unavailable"
+    icon_state_2: "[[[ return entity.attributes.icon; ]]]"
+  color: "var(--google-grey)"
+  triggers_update: "all"
+  show_icon: true
+  show_name: false
+  show_label: false
+  tap_action:
+    action: more-info
+  size: "50%"
+  aspect_ratio: "1/1"
+  state:
+    - value: "[[[ return variables.color_state_1; ]]]"
+      icon: "[[[ return variables.icon_state_1; ]]]"
+      styles:
+        icon:
+          - color: "[[[ return 'rgba(var(--color-' + variables.icon_color_1 + '),1)'; ]]]"
+        card:
+          - opacity: "1.0"
+          - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color_1 + '-bg),1.0)'; ]]]"
+    - value: "[[[ return variables.color_state_2; ]]]"
+      icon: "[[[ return variables.icon_state_2; ]]]"
+      styles:
+        icon:
+          - color: "[[[ return 'rgba(var(--color-' + variables.icon_color_2 + '),1)'; ]]]"
+        card:
+          - opacity: "1.0"
+          - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color_2 + '-bg),1.0)'; ]]]"
+  styles:
+    card:
+      - border-radius: "100%"
+      - box-shadow: "none"
+      - background-color: "rgba(var(--color-grey),0.2)"
+      - padding: "0px"
+
+    icon:
+      - color: "var(--google-grey)"

@@ -1,0 +1,63 @@
+---
+green_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-green),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-green), 0.2)"
+      value: "playing"
+
+blue_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-blue),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-blue), 0.2)"
+      value: "playing"
+
+pink_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-pink),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-pink), 0.2)"
+      value: "playing"
+
+red_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-red),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-red), 0.2)"
+      value: "playing"
+
+orange_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-orange),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-orange), 0.2)"
+      value: "playing"
+
+yellow_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-yellow),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-yellow), 0.2)"
+      value: "playing"
+
+teal_playing:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-teal),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-teal), 0.2)"
+      value: "playing"

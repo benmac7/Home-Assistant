@@ -1,0 +1,165 @@
+title: "Seb's Room"
+path: sebs_room
+visible: false
+icon: "mdi:car-lifted-pickup"
+cards:
+  - type: custom:stack-in-card
+    mode: vertical
+    keep:
+      box_shadow: true
+      margin: true
+      border_radius: true
+      background: true
+      outer_padding: true
+    style: |
+      ha-card {
+        background-color: rgba(var(--color-blue),0.7);
+        border-radius: var(--border-radius);
+      }
+    cards:
+      - type: "custom:layout-card"
+        layout_type: grid
+        layout:
+          grid-template-columns: 24% 76%
+          margin: 0px 0px 0px 0px
+        cards:
+          - type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: false
+              margin: false
+              border_radius: true
+              background: false
+              outer_padding: false
+            style: |
+              ha-card {
+                background-color: rgba(var(--color-blue-bg),1.0);
+                border-radius: var(--border-radius-bar);
+                box-shadow: none;
+              }
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: 'custom:button-card'
+                    template: chip_back
+                    variables:
+                      ulm_chip_back_path: /ui-lovelace-minimalist/home
+                  - type: 'custom:button-card'
+                    template: chip_navigate
+                    variables:
+                      ulm_chip_navigate_path: /ui-lovelace-minimalist/home
+                      ulm_chip_navigate_icon: mdi:home                     
+          - type: custom:stack-in-card
+            mode: vertical
+            keep:
+              box_shadow: false
+              margin: false
+              border_radius: true
+              background: false
+              outer_padding: false
+            style: |
+              ha-card {
+                background-color: rgba(var(--color-blue-bg),1.0);
+                border-radius: var(--border-radius-bar);
+                box-shadow: none;
+              }
+            cards:
+              - type: horizontal-stack
+                cards:
+                  - type: "custom:button-card"
+                    template: chip_mdi_icon_state_nb
+                    variables:
+                      ulm_chip_mdi_icon_state_entity: sensor.sebs_sensor_temperature
+                      ulm_chip_mdi_icon_state_icon: mdi:thermometer
+                  - type: "custom:button-card"
+                    template: chip_mdi_icon_state_nb
+                    variables:
+                      ulm_chip_mdi_icon_state_entity: sensor.sebs_sensor_humidity
+                      ulm_chip_mdi_icon_state_icon: mdi:water-percent
+                  - type: conditional
+                    conditions:
+                      - entity: light.sebs_downlights
+                        state: "on"
+                    card:
+                      type: "custom:button-card"
+                      template: chip_mdi_icon_only
+                      variables:
+                        ulm_chip_mdi_icon_only_entity: light.sebs_downlights
+                        ulm_chip_mdi_icon_only_icon: mdi:lightbulb
+                        ulm_chip_mdi_icon_only_icon_color: var(--primary-text-color)
+                      tap_action:
+                        action: call-service
+                        service: light.toggle
+                        service_data:
+                          entity_id: light.sebs_downlights
+                        haptic: success
+
+      - type: "custom:button-card"
+        template:
+          - "card_title_icon"
+        name: "Seb's Room"
+        variables:
+          ulm_card_navigate_title: "Seb's Room"
+          ulm_card_navigate_icon: mdi:car-lifted-pickup
+          icon_color: blue
+          background_color: blue-bg
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Lights"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.sebs_downlights
+        name: "Lights"
+        variables:
+          ulm_card_light_enable_popup: true
+          ulm_card_light_icon: "mdi:light-recessed"
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_collapse: false
+      - type: "custom:button-card"
+        template: card_light
+        entity: light.gateway_light
+        name: "Night Light"
+        variables:
+          ulm_card_light_enable_popup: true
+          ulm_card_light_icon: "mdi:lightbulb-night"
+          ulm_card_light_enable_slider: true
+          ulm_card_light_enable_collapse: false
+  - type: "custom:button-card"
+    template: "card_title_fixed_small"
+    name: "Media"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template:
+          - "card_input_boolean"
+          - "teal_on"
+          - "ulm_language_variables"
+        entity: input_boolean.boys_bedtime
+        name: "Bedtime Music"
+      - type: "custom:button-card"
+        template:
+          - "card_input_boolean"
+          - "green_on"
+          - "ulm_language_variables"
+        entity: input_boolean.elaine2
+        name: "Elaine Story"
+  - type: horizontal-stack
+    cards:
+      - type: "custom:button-card"
+        template:
+          - "card_input_boolean"
+          - "red_on"
+          - "ulm_language_variables"
+        entity: input_boolean.night_light
+        name: "Night Light"
+  - type: "custom:button-card"
+    template:
+      - card_media_player
+    entity: media_player.boys_google_home
+    variables:
+      ulm_card_media_player_enable_popup: true
+      ulm_card_media_player_enable_volume_slider: true
+      ulm_card_media_player_icon: 'phu:home-mini'
+    name: "Google Home"

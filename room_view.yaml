@@ -1,0 +1,348 @@
+type: custom:stack-in-card
+mode: vertical
+keep:
+  box_shadow: false
+  margin: true
+  border_radius: true
+  background: true
+  outer_padding: true
+style: |
+  ha-card {
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+cards:
+  - type: "custom:button-card"
+    template: "card_title_fixed"
+    name: "Rooms"
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Lounge Room
+    entity: sensor.girls_sensor_temperature
+    icon: mdi:sofa
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/lounge'
+    variables:
+      label_use_temperature: false
+      label_use_brightness: false
+      icon_color: red
+      room_card_image_path: '/local/Living_Room.png'
+      entity_1:
+        entity_id: light.lounge_lights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.lounge_room_sonos
+        templates:
+          - blue_playing
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: binary_sensor.lounge_doors
+        templates:
+          - green_on
+        tap_action:
+          action: more-info
+      entity_4:
+        entity_id: cover.lounge_blind
+        templates:
+          - orange_open
+        tap_action:
+          action: toggle
+          haptic: success
+          
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Rumpus
+    entity: sensor.rumpus_sensor_temperature
+    icon: mdi:desk
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/rumpus'
+    variables:
+      label_use_temperature: true
+      label_use_brightness: false
+      icon_color: teal
+      room_card_image_path: '/local/Rumpus.png'
+      entity_1:
+        entity_id: light.rumpus_lights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: group.rumpus_media
+        templates:
+          - blue_on
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: binary_sensor.rumpus_sliding_door
+        templates:
+          - green_on
+        tap_action:
+          action: none
+        
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Siena and Eden's Room
+    entity: sensor.girls_sensor_temperature
+    icon: mdi:heart-multiple
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/girls_room'
+    variables:
+      label_use_temperature: true
+      label_use_brightness: false
+      icon_color: pink
+      room_card_image_path: '/local/twins_room.jpeg'
+      entity_1:
+        entity_id: light.girls_room_downlights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.kids_google_home
+        templates:
+          - blue_playing
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: input_boolean.bedtime
+        templates:
+          - pink_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_4:
+        entity_id: input_boolean.elaine
+        templates:
+          - purple_on
+        tap_action:
+          action: toggle
+          haptic: success
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Seb's Room
+    entity: sensor.sebs_sensor_temperature
+    icon: mdi:car-lifted-pickup
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/sebs_room'
+    variables:
+      label_use_temperature: true
+      label_use_brightness: false
+      icon_color: blue
+      room_card_image_path: '/local/sebs_room.jpeg'
+      entity_1:
+        entity_id: light.sebs_downlights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.boys_google_home
+        templates:
+          - blue_playing
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: input_boolean.boys_bedtime
+        templates:
+          - teal_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_4:
+        entity_id: input_boolean.elaine2
+        templates:
+          - green_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_5:
+        entity_id: input_boolean.night_light
+        templates:
+          - red_on
+        tap_action:
+          action: toggle
+          haptic: success
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Play Room
+    entity: sensor.girls_sensor_temperature
+    icon: mdi:airballoon
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/play_room'
+    variables:
+      label_use_temperature: false
+      label_use_brightness: false
+      icon_color: purple
+      room_card_image_path: '/local/play_room.jpeg'
+      entity_1:
+        entity_id: light.play_room_lights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.playroom_sonos
+        templates:
+          - blue_playing
+        tap_action:
+          action: more-info
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Main Bedroom
+    entity: sensor.bedroom_sensor_temperature
+    icon: mdi:bed-king
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/bedroom'
+    variables:
+      label_use_temperature: true
+      label_use_brightness: false
+      icon_color: coral
+      room_card_image_path: '/local/bedroom_2.jpeg'
+      entity_1:
+        entity_id: light.main_bedroom
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.bedroom_google_home
+        templates:
+          - blue_on
+          - blue_playing
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: binary_sensor.bedroom_sliding_door
+        templates:
+          - green_on
+        tap_action:
+          action: none
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Kitchen
+    entity: sensor.girls_sensor_temperature
+    icon: mdi:fridge
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/kitchen'
+    variables:
+      label_use_temperature: false
+      label_use_brightness: false
+      icon_color: orange
+      room_card_image_path: '/local/Kitchen.png'
+      entity_1:
+        entity_id: light.kitchen_lights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: input_boolean.coffee_machine
+        templates:
+          - red_on
+        tap_action:
+          action: toggle
+      entity_3:
+        entity_id: binary_sensor.dishwasher
+        templates:
+          - green_on
+        tap_action:
+          action: none
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Laundry
+    entity: sensor.girls_sensor_temperature
+    icon: mdi:washing-machine
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/laundry'
+    variables:
+      label_use_temperature: false
+      label_use_brightness: false
+      icon_color: yellow
+      room_card_image_path: '/local/laundry.jpg'
+      entity_1:
+        entity_id: sensor.washer_dryer
+        templates:
+          - red_on
+        tap_action:
+          action: more-info
+      entity_2:
+        entity_id: binary_sensor.laundry_door
+        templates:
+          - green_on
+        tap_action:
+          action: none
+
+  - type: 'custom:button-card'
+    template:
+      - card_room_wide
+    name: Outdoors
+    entity: sensor.dark_sky_temperature
+    icon: mdi:tree
+    tap_action:
+      action: navigate
+      navigation_path: '/ui-lovelace-minimalist/outdoors'
+    variables:
+      label_use_temperature: true
+      label_use_brightness: false
+      icon_color: green
+      room_card_image_path: '/local/outdoors.jpeg'
+      entity_1:
+        entity_id: light.front_lights
+        templates:
+          - yellow_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_2:
+        entity_id: media_player.outdoor_sonos
+        templates:
+          - blue_playing
+        tap_action:
+          action: more-info
+      entity_3:
+        entity_id: switch.pool_pump
+        templates:
+          - blue_on
+        tap_action:
+          action: toggle
+          haptic: success
+      entity_4:
+        entity_id: switch.vege_patch_zone
+        templates:
+          - green_on
+        tap_action:
+          action: toggle
+          haptic: success

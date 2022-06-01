@@ -1,0 +1,11 @@
+---
+orange_no_state:
+  styles:
+    icon:
+      - color: "rgba(var(--color-orange),1)"
+    label:
+      - color: "rgba(var(--color-orange-text),1)"
+    name:
+      - color: "rgba(var(--color-orange-text),1)"
+    img_cell:
+      - background-color: "rgba(var(--color-orange), 0.2)"

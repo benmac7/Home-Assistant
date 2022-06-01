@@ -1,0 +1,63 @@
+---
+green_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-green),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-green), 0.2)"
+      value: "open"
+
+blue_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-blue),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-blue), 0.2)"
+      value: "open"
+
+pink_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-pink),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-pink), 0.2)"
+      value: "open"
+
+red_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-red),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-red), 0.2)"
+      value: "open"
+
+orange_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-orange),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-orange), 0.2)"
+      value: "open"
+
+yellow_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-yellow),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-yellow), 0.2)"
+      value: "open"
+
+teal_open:
+  state:
+    - styles:
+        icon:
+          - color: "rgba(var(--color-teal),1)"
+        img_cell:
+          - background-color: "rgba(var(--color-teal), 0.2)"
+      value: "open"

@@ -1,0 +1,65 @@
+---
+custom_card_room_notification:
+  template:
+    - "ulm_language_variables"
+  variables:
+    room_icon: "mdi:bedroom"
+    icon_color: theme
+    room_name: "Bedroom"
+  tap_action:
+    action: call-service              
+    service: input_select.select_option
+    service_data:
+      entity_id: "[[[ return entity.entity_id ]]]"
+      option: "[[[ return variables.room_name; ]]]"
+  color: "var(--google-grey-500)"
+  show_icon: true
+  show_name: false
+  show_label: false
+  size: "60%"
+  aspect_ratio: "1/1"
+  icon: "[[[ return variables.room_icon; ]]]"
+  state:
+    - value: "[[[ return variables.room_name; ]]]"
+      styles:
+        icon:
+          - color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),1)'; ]]]"
+#        img_cell:
+#          - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),0.05)'; ]]]"
+        card:
+          - opacity: "1.0"
+          - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),0.1)'; ]]]"
+  custom_fields:
+    notification: >
+      [[[
+        if (entity.state =="unavailable" || entity.state == "on"){
+          return `<ha-icon icon="mdi:exclamation" style="width: 12px; height: 12px; color: var(--primary-background-color);"></ha-icon>`
+        }
+      ]]]
+  styles:
+    card:
+      - border-radius: "100%"
+      - box-shadow: "var(--box-shadow)"
+      - opacity: "0.3"
+    icon:
+      - color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),1)'; ]]]"
+    custom_fields:
+      notification:
+        - border-radius: "50%"
+        - position: "absolute"
+        - left: "38px"
+        - top: "8px"
+        - height: "16px"
+        - width: "16px"
+        - border: "2px solid var(--card-background-color)"
+        - font-size: "12px"
+        - line-height: "14px"
+        - background-color: >
+            [[[
+                return "rgba(var(--color-red),1)";
+            ]]]
+#    img_cell:
+#      - background-color: "[[[ return 'rgba(var(--color-' + variables.icon_color + '),0.05)'; ]]]"
+#      - border-radius: "100%"
+#      - width: "100%"
+#      - height: "100%"

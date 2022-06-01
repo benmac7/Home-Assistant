@@ -1,0 +1,151 @@
+type: custom:stack-in-card
+mode: horizontal
+keep:
+  box_shadow: false
+  margin: false
+  border_radius: false
+  background: false
+  outer_padding: false
+style: |
+  ha-card {
+    background-color: rgb(var(--main-theme-bg));
+    border-radius: var(--border-radius-bar);
+    box-shadow: none;
+  }
+cards:
+  # Alarm
+  - type: 'custom:button-card'
+    template:
+      - chip_alarm_icon
+    tap_action:
+      action: navigate
+      navigation_path: /ui-lovelace-minimalist/security
+    entity: alarm_control_panel.homebase
+  - type: "custom:button-card"
+    template: chip_mdi_icon_state_nb
+    variables:
+      ulm_chip_mdi_icon_state_entity: sensor.power_kw
+      ulm_chip_mdi_icon_state_icon: mdi:lightning-bolt
+      ulm_chip_mdi_icon_state_icon_color: var(--google-yellow)
+
+  # Lights
+  - type: conditional
+    conditions:
+    - entity: group.all_lighting
+      state: "on"
+    card:
+      type: "custom:button-card"
+      tap_action:
+        action: navigate
+        navigation_path: /ui-lovelace-minimalist/lights
+      template: chip_mdi_icon_state_nb
+      variables:
+        ulm_chip_mdi_icon_state_entity: sensor.current_lights_on
+        ulm_chip_mdi_icon_state_icon: mdi:lightbulb-variant
+        ulm_chip_mdi_icon_state_icon_color: var(--google-orange)
+  # Doors
+  - type: conditional
+    conditions:
+    - entity: group.all_door_sensors
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_state_nb
+      tap_action:
+        action: navigate
+        navigation_path: /ui-lovelace-minimalist/doors
+      variables:
+        ulm_chip_mdi_icon_state_entity: sensor.current_doors_open
+        ulm_chip_mdi_icon_state_icon: mdi:door
+        ulm_chip_mdi_icon_state_icon_color: var(--google-green)
+  # Pool
+  - type: conditional
+    conditions:
+    - entity: switch.pool_pump
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      variables:
+        ulm_chip_mdi_icon_only_entity: switch.pool_pump
+        ulm_chip_mdi_icon_only_icon: mdi:pool
+        ulm_chip_mdi_icon_only_icon_color: var(--google-blue)
+  # Appliances
+  - type: conditional
+    conditions:
+    - entity: group.all_appliances
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_state_nb
+      tap_action:
+        action: navigate
+        navigation_path: /ui-lovelace-minimalist/appliances
+        haptic: success
+      variables:
+        ulm_chip_mdi_icon_state_entity: sensor.current_appliances
+        ulm_chip_mdi_icon_state_icon: mdi:dishwasher
+        ulm_chip_mdi_icon_state_icon_color: var(--google-red)
+  # Garden
+  - type: conditional
+    conditions:
+    - entity: switch.vege_patch_zone
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      variables:
+        ulm_chip_mdi_icon_only_entity: switch.vege_patch_zone
+        ulm_chip_mdi_icon_only_icon: mdi:sprout
+        ulm_chip_mdi_icon_only_icon_color: var(--google-green)
+# Leak
+  - type: conditional
+    conditions:
+    - entity: group.all_leak_sensors
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      variables:
+        ulm_chip_mdi_icon_only_entity: group.all_leak_sensors
+        ulm_chip_mdi_icon_only_icon: mdi:water
+        ulm_chip_mdi_icon_only_icon_color: var(--google-blue)
+  # Calendars
+  - type: conditional
+    conditions:
+    - entity: group.calendars
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      tap_action:
+        action: navigate
+        navigation_path: /ui-lovelace-minimalist/calendar
+      variables:
+        ulm_chip_mdi_icon_only_entity: group.calendars
+        ulm_chip_mdi_icon_only_icon: mdi:calendar
+        ulm_chip_mdi_icon_only_icon_color: var(--google-orange)
+  # Green Waste
+  - type: conditional
+    conditions:
+    - entity: calendar.green_waste
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      variables:
+        ulm_chip_mdi_icon_only_entity: calendar.green_waste
+        ulm_chip_mdi_icon_only_icon: mdi:trash-can
+        ulm_chip_mdi_icon_only_icon_color: var(--google-green)
+  # Recycling
+  - type: conditional
+    conditions:
+    - entity: calendar.recycling
+      state: "on"
+    card:
+      type: "custom:button-card"
+      template: chip_mdi_icon_only
+      variables:
+        ulm_chip_mdi_icon_only_entity: calendar.recycling
+        ulm_chip_mdi_icon_only_icon: mdi:trash-can
+        ulm_chip_mdi_icon_only_icon_color: var(--google-yellow)

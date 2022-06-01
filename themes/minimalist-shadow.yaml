@@ -1,0 +1,219 @@
+---
+minimalist-shadow:
+  # Journal
+
+  primary-font-family: 'Raleway,sans-serif'
+  paper-font-common-base_-_font-family: "var(--primary-font-family)"
+  paper-font-common-code_-_font-family: "var(--primary-font-family)"
+  paper-font-body1_-_font-family: "var(--primary-font-family)"
+  paper-font-subhead_-_font-family: "var(--primary-font-family)"
+  paper-font-headline_-_font-family: "var(--primary-font-family)"
+  paper-font-caption_-_font-family: "var(--primary-font-family)"
+  paper-font-title_-_font-family: "var(--primary-font-family)"
+  ha-card-header-font-family: "var(--primary-font-family)"
+
+  state-icon-color: "rgb(var(--color-theme))"
+  border-radius: "12px"
+  border-radius-bar: "8px"
+  ha-card-border-radius: "var(--border-radius)"
+  error-color: "var(--google-red)"
+  warning-color: "var(--google-yellow)"
+  success-color: "var(--google-green)"
+  info-color: "var(--google-blue)"
+  divider-color: "rgba(var(--color-theme),.12)"
+  accent-color: "var(--google-yellow)"
+  card-mod-theme: "minimalist-mobile"
+  google-red: "#F18B82"
+  google-green: "#80C994"
+  google-yellow: "#FCD663"
+  google-blue: "#89B3F8"
+  google-violet: "#BB86FC"
+  google-purple: "#a283e6"
+  google-grey: "#BBBBBB"
+  google-coral: "#ff7770"
+  google-default: "var(--primary-text-color)"
+  google-pink: "#e05383"
+  google-teal: "#029e9e"
+  google-orange: "#edb055"
+  color-red: "241, 139, 130"
+  color-ha-blue: "73, 168, 238"
+  color-green: "128, 201, 148"
+  color-yellow: "252, 214, 99"
+  color-blue: "137, 179, 248"
+  color-purple: "162, 131, 230"
+  color-grey: "187, 187, 187"
+  color-pink: "224, 83, 131"
+  color-coral: "255, 119, 112"
+  color-teal: "2, 158, 158"
+  color-orange: "237, 176, 85"
+  color-default: "var(--primary-text-rgb)"
+#  color-red: "245, 68, 54"
+#  color-ha-blue: "73, 168, 238"
+#  color-green: "1, 200, 82"
+#  color-yellow: "255, 145, 1"
+#  color-blue: "61, 90, 254"
+#  color-purple: "102, 31, 255"
+#  color-grey: "187, 187, 187"
+#  color-pink: "233, 30, 99"
+  
+  card-mod-root: |
+    app-toolbar {
+      display: none;
+    }
+  card-mod-view-yaml: |
+    "*:first-child$": |
+      #columns .column > * {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-bottom: 5px;
+      }
+
+  modes:
+    light:
+      # text
+      background-image-new: 'top / auto no-repeat url("/local/Light background.png") fixed'
+      primary-text-color: "#3C414F"
+      primary-text-rgb: "60, 65, 79"
+      main-theme: "var(--color-ha-blue)"
+      paper-item-icon-color: "var(--main-theme-hex)"
+      main-theme-hex: "#3399CC"
+      main-theme-bg: "var(--color-ha-blue-bg)"
+      # main interface colors
+      primary-color: "#434343"
+      primary-color-rgb: "67, 67, 67"
+#      google-red: "#F54436"
+#      google-green: "#01C852"
+#      google-yellow: "#FF9101"
+#      google-blue: "#3D5AFE"
+#      google-violet: "#661FFF"
+#      google-purple: "#661FFF"
+#      google-grey: "#BBBBBB"
+#      google-coral: "255, 118, 112"
+      color-theme: "51,51,51"
+      color-ha-blue-bg: "219, 233, 246"
+      color-purple-bg: "232,227,245"
+      color-grey-bg: "240,240,240"
+      color-pink-bg: "244,217,226"
+      color-green-bg: "226,240,230"
+      color-yellow-bg: "250,243,222"
+      color-blue-bg: "228,236,249"
+      color-red-bg: "248,228,226"
+      color-teal-bg: "205,232,231"
+      color-coral-bg: "251,224,223"
+      color-orange-bg: "247,235,219"
+      color-background-yellow: "250, 250, 250"
+      color-background-blue: "250, 250, 250"
+      color-background-green: "250, 250, 250"
+      color-background-red: "250, 250, 250"
+      color-background-pink: "250, 250, 250"
+      color-background-purple: "250, 250, 250"
+      color-background-teal: "250, 250, 250"
+      color-background-orange: "250, 250, 250"
+      color-background-coral: "250, 250, 250"
+      color-yellow-text: "var(--primary-text-color)"
+      color-blue-text: "var(--primary-text-color)"
+      color-green-text: "var(--primary-text-color)"
+      color-red-text: "var(--primary-text-color)"
+      color-pink-text: "var(--primary-text-color)"
+      color-purple-text: "var(--primary-text-color)"
+      color-teal-text: "var(--primary-text-color)"
+      color-orange-text: "var(--primary-text-color)"
+      color-coral-text: "var(--primary-text-color)"
+      opacity-bg: "1"
+      # background and sidebar
+      card-background-color: "#FAFAFA"
+      primary-background-color: "#EFEFEF"
+      secondary-background-color: "#EFEFEF"
+      # header
+      app-header-text-color: "var(--primary-text-color)"
+      app-header-background-color: "var(--primary-background-color)"
+      # paper-tabs-selection-bar-color: "var(--primary-text-color)"
+      # slider
+      slider-color: "rgb(var(--color-blue))"
+      slider-bar-color: "rgba(var(--color-blue),0.38)"
+      # cards
+#      box-shadow: "5px 3px 15px -12px rgba(0,0,0,0.56)"
+      box-shadow: "5px 3px 10px -5px rgba(0,0,0,0.4)"
+      ha-card-box-shadow: "var(--box-shadow)"
+      # sidebar
+      sidebar-selected-text-color: "var(--google-red)"
+      sidebar-selected-icon-color: "var(--google-red)"
+      sidebar-text-color: "#80868b"
+      # switch
+      switch-checked-color: "var(--google-blue)"
+      # media player
+      mini-media-player-accent-color: "var(--google-blue)"
+    dark:
+      # text
+      background-image-new: 'center / cover no-repeat url("/local/Light background.png") fixed'
+      primary-text-color: "#DDDDDD"
+      primary-text-rgb: "221,221,221"
+      paper-item-icon-color: "var(--main-theme-hex)"
+      main-theme: "var(--color-purple)"
+      main-theme-hex: "#a283e6"
+      main-theme-bg: "var(--color-purple-bg)"
+      # main interface colors
+      primary-color: "#89B3F8"
+      primary-color-rgb: "137, 179, 248"
+#      color-red: "245, 68, 54"
+#      color-ha-blue: "73, 168, 238"
+#      color-green: "1, 200, 82"
+#      color-yellow: "255, 145, 1"
+#      color-blue: "61, 90, 254"
+#      color-purple: "102, 31, 255"
+#      color-grey: "187, 187, 187"
+#      color-pink: "233, 30, 99"
+      color-theme: "221,221,221"
+      color-ha-blue-bg: "52,82,104"
+      color-purple-bg: "82,71,108"
+      color-grey-bg: "48,48,48"
+      color-pink-bg: "106,51,70"
+      color-green-bg: "69,92,76"
+      color-yellow-bg: "128,111,64"
+      color-blue-bg: "67,81,103"
+      color-red-bg: "132,83,79"
+      color-teal-bg: "26,98,97"
+      color-coral-bg: "119,65,63"
+      color-orange-bg: "134,103,62"
+      color-background-yellow: "var(--color-theme)"
+      color-background-blue: "var(--color-theme)"
+      color-background-green: "var(--color-theme)"
+      color-background-red: "var(--color-theme)"
+      color-background-pink: "var(--color-theme)"
+      color-background-purple: "var(--color-theme)"
+      color-background-teal: "var(--color-theme)"
+      color-background-orange: "var(--color-theme)"
+      color-background-coral: "var(--color-theme)"
+      color-yellow-text: "var(--color-yellow)"
+      color-blue-text: "var(--color-blue)"
+      color-green-text: "var(--color-green)"
+      color-red-text: "var(--color-red)"
+      color-pink-text: "var(--color-pink)"
+      color-teal-text: "var(--color-teal)"
+      color-orange-text: "var(--color-orange)"
+      color-purple-text: "var(--color-purple)"
+      color-coral-text: "var(--color-coral)"
+      opacity-bg: "0.1"
+      # floating button text color
+      mdc-theme-on-secondary: "var(--card-background-color)"
+      # background and sidebar
+      card-background-color: "#1D1D1D"
+      primary-background-color: "#121212"
+      secondary-background-color: "#121212"
+      # header
+      app-header-text-color: "var(--primary-text-color)"
+      app-header-background-color: "var(--primary-background-color)"
+      paper-tabs-selection-bar-color: "var(--primary-text-color)"
+      # Sidebar
+      sidebar-selected-text-color: "rgb(var(--color-blue))"
+      sidebar-selected-icon-color: "rgb(var(--color-blue))"
+      # Slider
+      slider-color: "rgb(var(--color-blue))"
+      slider-bar-color: "rgba(var(--color-blue),0.38)"
+      # card
+#      box-shadow: "5px 3px 15px -12px rgba(0,0,0,0.56)"
+      box-shadow: "5px 3px 6px -1px rgba(0,0,0,0.4)"
+      # media player
+      mini-media-player-accent-color: "var(--google-blue)"
+      # Journal
+      state-icon-color: "rgb(var(--color-theme))"

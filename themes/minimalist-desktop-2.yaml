@@ -2,7 +2,7 @@
 minimalist-desktop:
   # Journal
   primary-font-family: 'Raleway,sans-serif'
-    paper-font-common-base_-_font-family: "var(--primary-font-family)"
+  paper-font-common-base_-_font-family: "var(--primary-font-family)"
   paper-font-common-code_-_font-family: "var(--primary-font-family)"
   paper-font-body1_-_font-family: "var(--primary-font-family)"
   paper-font-subhead_-_font-family: "var(--primary-font-family)"
